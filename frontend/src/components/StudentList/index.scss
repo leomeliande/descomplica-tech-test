@@ -1,0 +1,147 @@
+/**
+ * StudentList Component Styles
+ * Table display for listing students with edit/delete actions
+ */
+
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+// ========================================
+// LIST CONTAINER
+// ========================================
+
+.student-list {
+  width: 100%;
+  margin-top: 0;
+}
+
+// ========================================
+// TABLE STYLES
+// ========================================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $bg-white;
+  box-shadow: $shadow-sm;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+}
+
+thead {
+  background-color: #fafafa;
+  color: $text-primary;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  padding: $spacing-4xl $spacing-md;
+  text-align: left;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-xs;
+  letter-spacing: 0.5px;
+  @include text-uppercase;
+}
+
+td {
+  padding: $spacing-4xl $spacing-md;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: $font-size-sm;
+  color: $text-primary;
+}
+
+tbody {
+  tr {
+    &:hover {
+      background-color: #fafafa;
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+// ========================================
+// ACTIONS COLUMN
+// ========================================
+
+.actions {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+// ========================================
+// ACTION BUTTONS
+// ========================================
+
+.btn-edit,
+.btn-delete {
+  @include button-base;
+  padding: 8px $spacing-md;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.btn-edit {
+  @include button-primary;
+
+  &:hover:not(:disabled) {
+    background-color: #00c77f;
+    transform: translateY(-1px);
+  }
+}
+
+.btn-delete {
+  @include button-danger;
+
+  &:hover:not(:disabled) {
+    background-color: #dc2626;
+    transform: translateY(-1px);
+  }
+}
+
+// ========================================
+// SPINNER - LOADING STATE
+// ========================================
+
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: $text-white;
+  @include spin-animation;
+}
+
+// ========================================
+// EMPTY STATE
+// ========================================
+
+.empty-state {
+  text-align: center;
+  padding: $spacing-2xl $spacing-md;
+  background-color: #f9f9f9;
+  border-radius: $border-radius-md;
+  color: #666;
+  font-size: $font-size-base;
+}

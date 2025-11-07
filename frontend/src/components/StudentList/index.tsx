@@ -1,7 +1,8 @@
 import React from "react";
+import { Pencil, Trash2 } from "lucide-react";
 import { Student } from "../../types";
 import { formatCPFDisplay } from "../../utils";
-import "./styles.css";
+import "./index.scss";
 
 interface StudentListProps {
   students: Student[];
@@ -21,6 +22,7 @@ export const StudentList: React.FC<StudentListProps> = ({
   const handleDelete = async (id: string) => {
     if (window.confirm("Tem certeza que deseja deletar este aluno?")) {
       setDeleteLoading(id);
+
       try {
         await onDelete(id);
       } finally {
@@ -61,7 +63,8 @@ export const StudentList: React.FC<StudentListProps> = ({
                   disabled={loading || deleteLoading !== null}
                   title="Editar aluno"
                 >
-                  ✏️ Editar
+                  <Pencil size={16} />
+                  Editar
                 </button>
                 <button
                   className="btn-delete"
@@ -69,7 +72,17 @@ export const StudentList: React.FC<StudentListProps> = ({
                   disabled={loading || deleteLoading !== null}
                   title="Deletar aluno"
                 >
-                  {deleteLoading === student._id ? "..." : "🗑️ Deletar"}
+                  {deleteLoading === student._id ? (
+                    <>
+                      <span className="spinner"></span>
+                      Deletando...
+                    </>
+                  ) : (
+                    <>
+                      <Trash2 size={16} />
+                      Deletar
+                    </>
+                  )}
                 </button>
               </td>
             </tr>

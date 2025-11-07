@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./styles.css";
+import { Search, X } from "lucide-react";
+import "./index.scss";
 
 interface SearchFilterProps {
   onSearch: (filters: { nome?: string; cpf?: string; email?: string }) => void;
@@ -35,6 +36,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
       <div className="filter-group">
         <input
           type="text"
+          name="nome"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
           placeholder="Filtrar por nome..."
@@ -43,6 +45,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
 
         <input
           type="text"
+          name="cpf"
           value={cpf}
           onChange={(e) => setCpf(e.target.value.replace(/\D/g, ""))}
           placeholder="Filtrar por CPF..."
@@ -52,6 +55,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
 
         <input
           type="email"
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Filtrar por email..."
@@ -59,7 +63,17 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
         />
 
         <button type="submit" disabled={loading} className="btn-search">
-          {loading ? "⏳ Buscando..." : "🔍 Buscar"}
+          {loading ? (
+            <>
+              <span className="spinner"></span>
+              Buscando...
+            </>
+          ) : (
+            <>
+              <Search size={16} />
+              Buscar
+            </>
+          )}
         </button>
 
         <button
@@ -68,7 +82,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
           disabled={loading || (!nome && !cpf && !email)}
           className="btn-clear"
         >
-          ✕ Limpar
+          <X size={16} />
+          Limpar
         </button>
       </div>
     </form>

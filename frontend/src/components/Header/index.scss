@@ -1,0 +1,207 @@
+/**
+ * Header Component Styles
+ */
+
+@import "../../styles/variables.scss";
+@import "../../styles/mixins";
+
+.app-header {
+  background-color: $primary-color;
+  color: $text-white;
+  padding: $spacing-lg $spacing-3xl;
+  box-shadow: $shadow-md;
+  @include flex-between;
+  position: relative;
+
+  @include breakpoint("md") {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.header-logo {
+  @include flex-center;
+  gap: $spacing-xl;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  svg {
+    color: $text-white;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+
+    @include breakpoint("md") {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  h1 {
+    margin: 0;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    letter-spacing: -0.5px;
+
+    @include breakpoint("md") {
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+// ========================================
+// HAMBURGER MENU
+// ========================================
+
+.hamburger {
+  @include flex-center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-md;
+  margin-left: auto;
+  transition: all $transition-fast;
+  color: $text-white;
+  display: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+  }
+
+  @include breakpoint("md") {
+    display: flex;
+  }
+}
+
+// ========================================
+// HEADER MENU
+// ========================================
+
+.header-menu {
+  @include flex-center;
+  gap: $spacing-md;
+  align-items: center;
+
+  @include breakpoint("md") {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, $primary-color 0%, #00b87d 100%);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+    @include flex-column;
+    padding: 80px $spacing-lg $spacing-lg;
+    gap: $spacing-sm;
+    transform: translateX(100%);
+    transition: transform $transition-normal $easing-cubic;
+    z-index: $z-index-modal;
+    overflow-y: auto;
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}
+
+.menu-item {
+  @include flex-center;
+  gap: $spacing-sm;
+
+  @include breakpoint("md") {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: $text-white;
+    border: $border-width solid rgba(255, 255, 255, 0.2);
+    padding: $spacing-lg $spacing-xl;
+    border-radius: $border-radius-lg;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: all $transition-fast;
+    text-align: left;
+    backdrop-filter: blur(10px);
+    width: 100%;
+
+    &:active,
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateX($spacing-sm);
+    }
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: $z-index-modal-overlay;
+  @include fade-in-animation;
+}
+
+// ========================================
+// DESKTOP MENU
+// ========================================
+
+@include breakpoint("lg") {
+  .hamburger,
+  .menu-overlay {
+    display: none !important;
+  }
+
+  .header-menu {
+    display: flex !important;
+    flex-direction: row;
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    gap: $spacing-md;
+    transform: none !important;
+    z-index: auto;
+    overflow: visible;
+  }
+
+  .menu-item {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: $text-white;
+    border: $border-width solid rgba(255, 255, 255, 0.2);
+    padding: $spacing-md $spacing-xl;
+    border-radius: $border-radius-md;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: all $transition-fast;
+    text-align: center;
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+  }
+}

@@ -1,0 +1,68 @@
+/**
+ * Button Component Styles
+ */
+
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.btn-edit,
+.btn-delete {
+  @include button-base;
+}
+
+.btn-edit {
+  @include button-primary;
+}
+
+.btn-delete {
+  @include button-danger;
+}
+
+.btn-cancel {
+  @include button-base;
+  background-color: #6c757d;
+  color: $text-white;
+  align-self: flex-start;
+  margin-top: $spacing-md;
+
+  &:hover:not(:disabled) {
+    background-color: #545b62;
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+}
+
+.btn-search {
+  @include button-base;
+  @include button-primary;
+}
+
+.btn-clear {
+  @include button-base;
+  @include button-secondary;
+}
+
+.btn-add {
+  @include button-base;
+  @include button-primary;
+  display: inline-block;
+  align-self: auto;
+}
+
+// ========================================
+// SPINNER
+// ========================================
+
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: $text-white;
+  @include spin-animation;
+}

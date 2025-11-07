@@ -1,0 +1,180 @@
+/**
+ * Global Styles & Reset
+ * Base styles, typography, and root configuration
+ */
+
+@import "variables";
+@import "mixins";
+
+// ========================================
+// RESET & BASE
+// ========================================
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $text-primary;
+  background-color: $bg-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ========================================
+// TYPOGRAPHY
+// ========================================
+
+h1 {
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+}
+
+h2 {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  margin-bottom: $spacing-2xl;
+}
+
+h3 {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+}
+
+h4 {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+h5,
+h6 {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+}
+
+p {
+  margin-bottom: $spacing-md;
+}
+
+small {
+  font-size: $font-size-xs;
+  color: $text-secondary;
+}
+
+// ========================================
+// LINKS
+// ========================================
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $primary-hover;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+// ========================================
+// LISTS
+// ========================================
+
+ul,
+ol {
+  margin-left: $spacing-lg;
+  margin-bottom: $spacing-md;
+
+  li {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+// ========================================
+// CODE
+// ========================================
+
+code,
+pre {
+  font-family: "Courier New", monospace;
+  background-color: $bg-secondary;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-sm;
+}
+
+pre {
+  padding: $spacing-lg;
+  overflow-x: auto;
+}
+
+// ========================================
+// TABLES
+// ========================================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  @include card-base;
+  overflow: hidden;
+}
+
+thead {
+  background-color: $bg-secondary;
+  color: $text-primary;
+  border-bottom: $border-width $border-style $border-color;
+}
+
+th {
+  padding: $spacing-lg;
+  text-align: left;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-xs;
+  @include text-uppercase;
+}
+
+td {
+  padding: $spacing-lg;
+  border-bottom: $border-width $border-style $border-light;
+  font-size: $font-size-base;
+  color: $text-primary;
+}
+
+tbody {
+  tr:hover {
+    background-color: $bg-secondary;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+// ========================================
+// ROOT VARIABLES
+// ========================================
+
+:root {
+  --primary-color: #{$primary-color};
+  --primary-hover: #{$primary-hover};
+  --primary-focus: #{$primary-focus};
+  --text-primary: #{$text-primary};
+  --bg-primary: #{$bg-primary};
+}

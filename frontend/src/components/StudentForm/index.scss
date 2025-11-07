@@ -1,0 +1,115 @@
+/**
+ * StudentForm Component Styles
+ * Form for adding/editing student information
+ */
+
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+// ========================================
+// FORM CONTAINER
+// ========================================
+
+.student-form {
+  @include flex-column;
+  gap: $spacing-2xl;
+  padding: $spacing-2xl;
+  background: $bg-white;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  border: 1px solid #f0f0f0;
+}
+
+// ========================================
+// FORM GROUP
+// ========================================
+
+.form-group {
+  @include flex-column;
+  gap: $spacing-sm;
+
+  label {
+    @include label-base;
+  }
+
+  input {
+    @include input-base;
+
+    &:focus {
+      border-color: $primary-color;
+      background-color: $bg-white;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+
+    &:disabled {
+      background-color: #f0f0f0;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ========================================
+// ERROR MESSAGE
+// ========================================
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-sm;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-sm;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+// ========================================
+// SUBMIT BUTTON
+// ========================================
+
+.submit-button {
+  @include button-base;
+  @include button-primary;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: #00c77f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+// ========================================
+// SPINNER - LOADING STATE
+// ========================================
+
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: $text-white;
+  @include spin-animation;
+}

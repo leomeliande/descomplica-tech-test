@@ -1,0 +1,306 @@
+/**
+ * Reusable Mixins & Helper Functions
+ * Common patterns, animations, utilities
+ */
+
+// ========================================
+// RESPONSIVE BREAKPOINTS
+// ========================================
+
+@mixin breakpoint($point) {
+  @if $point == "xs" {
+    @media (max-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $point == "sm" {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $point == "md" {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $point == "lg" {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $point == "xl" {
+    @media (max-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $point == "2xl" {
+    @media (max-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+// ========================================
+// FLEXBOX & GRID UTILITIES
+// ========================================
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+// ========================================
+// BUTTONS & INTERACTIVE
+// ========================================
+
+@mixin button-base {
+  padding: $spacing-md $spacing-lg;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast $easing-ease;
+  white-space: nowrap;
+  @include flex-center;
+  gap: $spacing-sm;
+
+  &:disabled {
+    background-color: $border-disabled;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+@mixin button-primary {
+  background-color: $primary-color;
+  color: $text-white;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 230, 143, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  background-color: #e5e7eb;
+  color: #374151;
+
+  &:hover:not(:disabled) {
+    background-color: #d1d5db;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin button-danger {
+  background-color: $danger-color;
+  color: $text-white;
+
+  &:hover:not(:disabled) {
+    background-color: $danger-hover;
+    transform: translateY(-1px);
+  }
+}
+
+// ========================================
+// FORMS & INPUTS
+// ========================================
+
+@mixin input-base {
+  padding: $spacing-lg $spacing-lg;
+  border: $border-width $border-style $border-color;
+  border-radius: $border-radius-lg;
+  font-size: $font-size-md;
+  transition: all $transition-fast;
+  background-color: $bg-secondary;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    background-color: $bg-white;
+    box-shadow: 0 0 0 3px $primary-focus;
+  }
+
+  &:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+  }
+}
+
+@mixin label-base {
+  font-weight: $font-weight-medium;
+  color: $text-primary;
+  font-size: $font-size-sm;
+  letter-spacing: 0.5px;
+}
+
+// ========================================
+// ANIMATIONS
+// ========================================
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@mixin spin-animation {
+  animation: spin $transition-slow linear infinite;
+}
+
+@mixin slide-down-animation {
+  animation: slideDown $transition-fast ease-out;
+}
+
+@mixin fade-in-animation {
+  animation: fadeIn $transition-normal ease;
+}
+
+@mixin slide-in-right-animation {
+  animation: slideInRight $transition-normal $easing-cubic;
+}
+
+// ========================================
+// TEXT & TYPOGRAPHY
+// ========================================
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin text-uppercase {
+  font-size: $font-size-xs;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+// ========================================
+// CARDS & CONTAINERS
+// ========================================
+
+@mixin card-base {
+  background: $bg-white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  border: $border-width $border-style $border-light;
+}
+
+@mixin card-elevated {
+  background: $bg-white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  border: none;
+}
+
+// ========================================
+// HOVER & STATE EFFECTS
+// ========================================
+
+@mixin hover-lift {
+  transition: all $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+@mixin hover-scale {
+  transition: all $transition-fast;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+// ========================================
+// ACCESSIBILITY
+// ========================================
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@mixin focus-ring {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}
