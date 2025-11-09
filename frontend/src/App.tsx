@@ -4,6 +4,8 @@ import { Header } from "./components/Header";
 import { AppViewProvider } from "./contexts/AppViewContext";
 import { AppContent } from "./components/AppContent";
 
+import "./styles/index.scss";
+
 import "./App.scss";
 
 function App() {

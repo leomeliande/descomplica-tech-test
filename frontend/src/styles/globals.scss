@@ -3,8 +3,8 @@
  * Base styles, typography, and root configuration
  */
 
-@import "variables";
-@import "mixins";
+@use "./variables";
+@use "./mixins";
 
 // ========================================
 // RESET & BASE
@@ -24,11 +24,11 @@ html {
 }
 
 body {
-  font-family: $font-family;
-  font-size: $font-size-base;
-  line-height: $line-height-normal;
-  color: $text-primary;
-  background-color: $bg-primary;
+  font-family: variables.$font-family;
+  font-size: variables.$font-size-base;
+  line-height: variables.$line-height-normal;
+  color: variables.$text-primary;
+  background-color: variables.$bg-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,41 +38,41 @@ body {
 // ========================================
 
 h1 {
-  font-size: $font-size-4xl;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-tight;
+  font-size: variables.$font-size-4xl;
+  font-weight: variables.$font-weight-bold;
+  line-height: variables.$line-height-tight;
 }
 
 h2 {
-  font-size: $font-size-2xl;
-  font-weight: $font-weight-semibold;
-  line-height: $line-height-tight;
-  margin-bottom: $spacing-2xl;
+  font-size: variables.$font-size-2xl;
+  font-weight: variables.$font-weight-semibold;
+  line-height: variables.$line-height-tight;
+  margin-bottom: variables.$spacing-2xl;
 }
 
 h3 {
-  font-size: $font-size-xl;
-  font-weight: $font-weight-semibold;
+  font-size: variables.$font-size-xl;
+  font-weight: variables.$font-weight-semibold;
 }
 
 h4 {
-  font-size: $font-size-lg;
-  font-weight: $font-weight-semibold;
+  font-size: variables.$font-size-lg;
+  font-weight: variables.$font-weight-semibold;
 }
 
 h5,
 h6 {
-  font-size: $font-size-md;
-  font-weight: $font-weight-semibold;
+  font-size: variables.$font-size-md;
+  font-weight: variables.$font-weight-semibold;
 }
 
 p {
-  margin-bottom: $spacing-md;
+  margin-bottom: variables.$spacing-md;
 }
 
 small {
-  font-size: $font-size-xs;
-  color: $text-secondary;
+  font-size: variables.$font-size-xs;
+  color: variables.$text-secondary;
 }
 
 // ========================================
@@ -80,16 +80,16 @@ small {
 // ========================================
 
 a {
-  color: $primary-color;
+  color: variables.$primary-color;
   text-decoration: none;
-  transition: color $transition-fast;
+  transition: color variables.$transition-fast;
 
   &:hover {
-    color: $primary-hover;
+    color: variables.$primary-hover;
   }
 
   &:focus-visible {
-    @include focus-ring;
+    @include mixins.focus-ring;
   }
 }
 
@@ -99,11 +99,11 @@ a {
 
 ul,
 ol {
-  margin-left: $spacing-lg;
-  margin-bottom: $spacing-md;
+  margin-left: variables.$spacing-lg;
+  margin-bottom: variables.$spacing-md;
 
   li {
-    margin-bottom: $spacing-sm;
+    margin-bottom: variables.$spacing-sm;
   }
 }
 
@@ -114,14 +114,14 @@ ol {
 code,
 pre {
   font-family: "Courier New", monospace;
-  background-color: $bg-secondary;
-  padding: $spacing-xs $spacing-sm;
-  border-radius: $border-radius-sm;
-  font-size: $font-size-sm;
+  background-color: variables.$bg-secondary;
+  padding: variables.$spacing-xs variables.$spacing-sm;
+  border-radius: variables.$border-radius-sm;
+  font-size: variables.$font-size-sm;
 }
 
 pre {
-  padding: $spacing-lg;
+  padding: variables.$spacing-lg;
   overflow-x: auto;
 }
 
@@ -132,34 +132,36 @@ pre {
 table {
   width: 100%;
   border-collapse: collapse;
-  @include card-base;
+  @include mixins.card-base;
   overflow: hidden;
 }
 
 thead {
-  background-color: $bg-secondary;
-  color: $text-primary;
-  border-bottom: $border-width $border-style $border-color;
+  background-color: variables.$bg-secondary;
+  color: variables.$text-primary;
+  border-bottom: variables.$border-width variables.$border-style
+    variables.$border-color;
 }
 
 th {
-  padding: $spacing-lg;
+  padding: variables.$spacing-lg;
   text-align: left;
-  font-weight: $font-weight-semibold;
-  font-size: $font-size-xs;
-  @include text-uppercase;
+  font-weight: variables.$font-weight-semibold;
+  font-size: variables.$font-size-xs;
+  @include mixins.text-uppercase;
 }
 
 td {
-  padding: $spacing-lg;
-  border-bottom: $border-width $border-style $border-light;
-  font-size: $font-size-base;
-  color: $text-primary;
+  padding: variables.$spacing-lg;
+  border-bottom: variables.$border-width variables.$border-style
+    variables.$border-light;
+  font-size: variables.$font-size-base;
+  color: variables.$text-primary;
 }
 
 tbody {
   tr:hover {
-    background-color: $bg-secondary;
+    background-color: variables.$bg-secondary;
   }
 
   tr:last-child td {
@@ -172,9 +174,9 @@ tbody {
 // ========================================
 
 :root {
-  --primary-color: #{$primary-color};
-  --primary-hover: #{$primary-hover};
-  --primary-focus: #{$primary-focus};
-  --text-primary: #{$text-primary};
-  --bg-primary: #{$bg-primary};
+  --primary-color: #{variables.$primary-color};
+  --primary-hover: #{variables.$primary-hover};
+  --primary-focus: #{variables.$primary-focus};
+  --text-primary: #{variables.$text-primary};
+  --bg-primary: #{variables.$bg-primary};
 }

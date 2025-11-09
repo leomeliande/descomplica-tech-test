@@ -2,42 +2,42 @@
  * Header Component Styles
  */
 
-@import "../../styles/variables.scss";
-@import "../../styles/mixins";
+@use "../../styles/variables.scss";
+@use "../../styles/mixins";
 
 .app-header {
-  background-color: $primary-color;
-  color: $text-white;
-  padding: $spacing-lg $spacing-3xl;
-  box-shadow: $shadow-md;
-  @include flex-between;
+  background-color: variables.$primary-color;
+  color: variables.$text-white;
+  padding: variables.$spacing-lg variables.$spacing-3xl;
+  box-shadow: variables.$shadow-md;
+  @include mixins.flex-between;
   position: relative;
 
-  @include breakpoint("md") {
-    padding: $spacing-md $spacing-lg;
+  @include mixins.breakpoint("md") {
+    padding: variables.$spacing-md variables.$spacing-lg;
   }
 }
 
 .header-logo {
-  @include flex-center;
-  gap: $spacing-xl;
+  @include mixins.flex-center;
+  gap: variables.$spacing-xl;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
   flex: 1;
-  transition: opacity $transition-fast;
+  transition: opacity variables.$transition-fast;
 
   &:hover {
     opacity: 0.9;
   }
 
   svg {
-    color: $text-white;
+    color: variables.$text-white;
     flex-shrink: 0;
     width: 40px;
     height: 40px;
 
-    @include breakpoint("md") {
+    @include mixins.breakpoint("md") {
       width: 32px;
       height: 32px;
     }
@@ -45,12 +45,12 @@
 
   h1 {
     margin: 0;
-    font-size: $font-size-4xl;
-    font-weight: $font-weight-bold;
+    font-size: variables.$font-size-4xl;
+    font-weight: variables.$font-weight-bold;
     letter-spacing: -0.5px;
 
-    @include breakpoint("md") {
-      font-size: $font-size-lg;
+    @include mixins.breakpoint("md") {
+      font-size: variables.$font-size-lg;
     }
   }
 }
@@ -60,14 +60,14 @@
 // ========================================
 
 .hamburger {
-  @include flex-center;
+  @include mixins.flex-center;
   background: none;
   border: none;
   cursor: pointer;
-  padding: $spacing-md;
+  padding: variables.$spacing-md;
   margin-left: auto;
-  transition: all $transition-fast;
-  color: $text-white;
+  transition: all variables.$transition-fast;
+  color: variables.$text-white;
   display: none;
 
   &:hover {
@@ -80,7 +80,7 @@
     stroke-width: 2;
   }
 
-  @include breakpoint("md") {
+  @include mixins.breakpoint("md") {
     display: flex;
   }
 }
@@ -90,25 +90,29 @@
 // ========================================
 
 .header-menu {
-  @include flex-center;
-  gap: $spacing-md;
+  @include mixins.flex-center;
+  gap: variables.$spacing-md;
   align-items: center;
 
-  @include breakpoint("md") {
+  @include mixins.breakpoint("md") {
     position: fixed;
     top: 0;
     right: 0;
     width: 100%;
     max-width: 280px;
     height: 100vh;
-    background: linear-gradient(135deg, $primary-color 0%, #00b87d 100%);
+    background: linear-gradient(
+      135deg,
+      variables.$primary-color 0%,
+      #00b87d 100%
+    );
     box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
-    @include flex-column;
-    padding: 80px $spacing-lg $spacing-lg;
-    gap: $spacing-sm;
+    @include mixins.flex-column;
+    padding: 80px variables.$spacing-lg variables.$spacing-lg;
+    gap: variables.$spacing-sm;
     transform: translateX(100%);
-    transition: transform $transition-normal $easing-cubic;
-    z-index: $z-index-modal;
+    transition: transform variables.$transition-normal variables.$easing-cubic;
+    z-index: variables.$z-index-modal;
     overflow-y: auto;
 
     &.open {
@@ -118,19 +122,19 @@
 }
 
 .menu-item {
-  @include flex-center;
-  gap: $spacing-sm;
+  @include mixins.flex-center;
+  gap: variables.$spacing-sm;
 
-  @include breakpoint("md") {
+  @include mixins.breakpoint("md") {
     background-color: rgba(255, 255, 255, 0.15);
-    color: $text-white;
-    border: $border-width solid rgba(255, 255, 255, 0.2);
-    padding: $spacing-lg $spacing-xl;
-    border-radius: $border-radius-lg;
-    font-size: $font-size-md;
-    font-weight: $font-weight-semibold;
+    color: variables.$text-white;
+    border: variables.$border-width solid rgba(255, 255, 255, 0.2);
+    padding: variables.$spacing-lg variables.$spacing-xl;
+    border-radius: variables.$border-radius-lg;
+    font-size: variables.$font-size-md;
+    font-weight: variables.$font-weight-semibold;
     cursor: pointer;
-    transition: all $transition-fast;
+    transition: all variables.$transition-fast;
     text-align: left;
     backdrop-filter: blur(10px);
     width: 100%;
@@ -139,7 +143,7 @@
     &:hover {
       background-color: rgba(255, 255, 255, 0.25);
       border-color: rgba(255, 255, 255, 0.3);
-      transform: translateX($spacing-sm);
+      transform: translateX(variables.$spacing-sm);
     }
   }
 
@@ -156,15 +160,15 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
-  z-index: $z-index-modal-overlay;
-  @include fade-in-animation;
+  z-index: variables.$z-index-modal-overlay;
+  @include mixins.fade-in-animation;
 }
 
 // ========================================
 // DESKTOP MENU
 // ========================================
 
-@include breakpoint("lg") {
+@include mixins.breakpoint("lg") {
   .hamburger,
   .menu-overlay {
     display: none !important;
@@ -179,7 +183,7 @@
     background: none;
     box-shadow: none;
     padding: 0;
-    gap: $spacing-md;
+    gap: variables.$spacing-md;
     transform: none !important;
     z-index: auto;
     overflow: visible;
@@ -187,14 +191,14 @@
 
   .menu-item {
     background-color: rgba(255, 255, 255, 0.15);
-    color: $text-white;
-    border: $border-width solid rgba(255, 255, 255, 0.2);
-    padding: $spacing-md $spacing-xl;
-    border-radius: $border-radius-md;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
+    color: variables.$text-white;
+    border: variables.$border-width solid rgba(255, 255, 255, 0.2);
+    padding: variables.$spacing-md variables.$spacing-xl;
+    border-radius: variables.$border-radius-md;
+    font-size: variables.$font-size-sm;
+    font-weight: variables.$font-weight-semibold;
     cursor: pointer;
-    transition: all $transition-fast;
+    transition: all variables.$transition-fast;
     text-align: center;
     backdrop-filter: blur(10px);
 

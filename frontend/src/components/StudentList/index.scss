@@ -3,8 +3,8 @@
  * Table display for listing students with edit/delete actions
  */
 
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@use "../../styles/variables";
+@use "../../styles/mixins";
 
 // ========================================
 // LIST CONTAINER
@@ -22,33 +22,33 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: $bg-white;
-  box-shadow: $shadow-sm;
-  border-radius: $border-radius-md;
+  background-color: variables.$bg-white;
+  box-shadow: variables.$shadow-sm;
+  border-radius: variables.$border-radius-md;
   overflow: hidden;
   border: 1px solid #f0f0f0;
 }
 
 thead {
   background-color: #fafafa;
-  color: $text-primary;
+  color: variables.$text-primary;
   border-bottom: 1px solid #e0e0e0;
 }
 
 th {
-  padding: $spacing-4xl $spacing-md;
+  padding: variables.$spacing-4xl variables.$spacing-md;
   text-align: left;
-  font-weight: $font-weight-semibold;
-  font-size: $font-size-xs;
+  font-weight: variables.$font-weight-semibold;
+  font-size: variables.$font-size-xs;
   letter-spacing: 0.5px;
-  @include text-uppercase;
+  @include mixins.text-uppercase;
 }
 
 td {
-  padding: $spacing-4xl $spacing-md;
+  padding: variables.$spacing-4xl variables.$spacing-md;
   border-bottom: 1px solid #f5f5f5;
-  font-size: $font-size-sm;
-  color: $text-primary;
+  font-size: variables.$font-size-sm;
+  color: variables.$text-primary;
 }
 
 tbody {
@@ -69,7 +69,7 @@ tbody {
 
 .actions {
   display: flex;
-  gap: $spacing-sm;
+  gap: variables.$spacing-sm;
 }
 
 // ========================================
@@ -78,11 +78,11 @@ tbody {
 
 .btn-edit,
 .btn-delete {
-  @include button-base;
-  padding: 8px $spacing-md;
-  border-radius: $border-radius-sm;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-semibold;
+  @include mixins.button-base;
+  padding: 8px variables.$spacing-md;
+  border-radius: variables.$border-radius-sm;
+  font-size: variables.$font-size-xs;
+  font-weight: variables.$font-weight-semibold;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -102,7 +102,7 @@ tbody {
 }
 
 .btn-edit {
-  @include button-primary;
+  @include mixins.button-primary;
 
   &:hover:not(:disabled) {
     background-color: #00c77f;
@@ -111,7 +111,7 @@ tbody {
 }
 
 .btn-delete {
-  @include button-danger;
+  @include mixins.button-danger;
 
   &:hover:not(:disabled) {
     background-color: #dc2626;
@@ -129,8 +129,8 @@ tbody {
   height: 12px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: $text-white;
-  @include spin-animation;
+  border-top-color: variables.$text-white;
+  @include mixins.spin-animation;
 }
 
 // ========================================
@@ -139,9 +139,9 @@ tbody {
 
 .empty-state {
   text-align: center;
-  padding: $spacing-2xl $spacing-md;
+  padding: variables.$spacing-2xl variables.$spacing-md;
   background-color: #f9f9f9;
-  border-radius: $border-radius-md;
+  border-radius: variables.$border-radius-md;
   color: #666;
-  font-size: $font-size-base;
+  font-size: variables.$font-size-base;
 }

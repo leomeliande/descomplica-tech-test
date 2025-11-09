@@ -3,20 +3,20 @@
  * Form for adding/editing student information
  */
 
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@use "../../styles/variables";
+@use "../../styles/mixins";
 
 // ========================================
 // FORM CONTAINER
 // ========================================
 
 .student-form {
-  @include flex-column;
-  gap: $spacing-2xl;
-  padding: $spacing-2xl;
-  background: $bg-white;
-  border-radius: $border-radius-md;
-  box-shadow: $shadow-sm;
+  @include mixins.flex-column;
+  gap: variables.$spacing-2xl;
+  padding: variables.$spacing-2xl;
+  background: variables.$bg-white;
+  border-radius: variables.$border-radius-md;
+  box-shadow: variables.$shadow-sm;
   border: 1px solid #f0f0f0;
 }
 
@@ -25,20 +25,20 @@
 // ========================================
 
 .form-group {
-  @include flex-column;
-  gap: $spacing-sm;
+  @include mixins.flex-column;
+  gap: variables.$spacing-sm;
 
   label {
-    @include label-base;
+    @include mixins.label-base;
   }
 
   input {
-    @include input-base;
+    @include mixins.input-base;
 
     &:focus {
-      border-color: $primary-color;
-      background-color: $bg-white;
-      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+      border-color: variables.$primary-color;
+      background-color: variables.$bg-white;
+      box-shadow: 0 0 0 3px rgba(variables.$primary-color, 0.1);
     }
 
     &:disabled {
@@ -55,13 +55,13 @@
 .error-message {
   display: flex;
   align-items: center;
-  gap: $spacing-md;
-  padding: $spacing-sm;
+  gap: variables.$spacing-md;
+  padding: variables.$spacing-sm;
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
-  border-radius: $border-radius-sm;
-  font-size: $font-size-sm;
+  border-radius: variables.$border-radius-sm;
+  font-size: variables.$font-size-sm;
 
   svg {
     width: 16px;
@@ -75,12 +75,12 @@
 // ========================================
 
 .submit-button {
-  @include button-base;
-  @include button-primary;
+  @include mixins.button-base;
+  @include mixins.button-primary;
   align-self: flex-start;
   display: flex;
   align-items: center;
-  gap: $spacing-xs;
+  gap: variables.$spacing-xs;
 
   svg {
     width: 16px;
@@ -91,7 +91,7 @@
   &:hover:not(:disabled) {
     background-color: #00c77f;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+    box-shadow: 0 4px 12px rgba(variables.$primary-color, 0.3);
   }
 
   &:disabled {
@@ -110,6 +110,6 @@
   height: 12px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: $text-white;
-  @include spin-animation;
+  border-top-color: variables.$text-white;
+  @include mixins.spin-animation;
 }

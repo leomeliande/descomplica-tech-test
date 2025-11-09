@@ -3,16 +3,16 @@
  * Global layout, containers, and page sections
  */
 
-@import "./styles/variables";
-@import "./styles/mixins";
-@import "./styles/globals";
+@use "./styles/variables";
+@use "./styles/mixins";
+@use "./styles/globals";
 
 // ========================================
 // APP LAYOUT
 // ========================================
 
 .app {
-  @include flex-column;
+  @include mixins.flex-column;
   min-height: 100vh;
 }
 
@@ -21,8 +21,8 @@
 // ========================================
 
 .app-main {
-  padding: $spacing-2xl;
-  @include flex-center;
+  padding: variables.$spacing-2xl;
+  @include mixins.flex-center;
   justify-content: center;
 }
 
@@ -31,8 +31,8 @@
 // ========================================
 
 .app-container {
-  @include flex-column;
-  gap: $spacing-2xl;
+  @include mixins.flex-column;
+  gap: variables.$spacing-2xl;
   max-width: 1200px;
   flex: 1;
 }
@@ -52,10 +52,10 @@
   border: none;
 
   h2 {
-    font-size: $font-size-4xl;
-    font-weight: $font-weight-semibold;
-    margin-bottom: $spacing-2xl;
-    color: $text-primary;
+    font-size: variables.$font-size-4xl;
+    font-weight: variables.$font-weight-semibold;
+    margin-bottom: variables.$spacing-2xl;
+    color: variables.$text-primary;
   }
 }
 
@@ -77,14 +77,14 @@
 // ========================================
 
 .app-error {
-  padding: $spacing-md;
+  padding: variables.$spacing-md;
   background-color: #fee;
   color: #721c24;
   border: 1px solid #fcc;
-  border-radius: $border-radius-sm;
-  margin-bottom: $spacing-4xl;
-  font-size: $font-size-sm;
-  @include slide-down-animation;
+  border-radius: variables.$border-radius-sm;
+  margin-bottom: variables.$spacing-4xl;
+  font-size: variables.$font-size-sm;
+  @include mixins.slide-down-animation;
 }
 
 // ========================================
@@ -108,12 +108,12 @@
 
 .app-footer {
   background: linear-gradient(135deg, #333 0%, #555 100%);
-  color: $text-white;
+  color: variables.$text-white;
   text-align: center;
-  padding: $spacing-2xl $spacing-md;
+  padding: variables.$spacing-2xl variables.$spacing-md;
   margin-top: auto;
-  font-size: $font-size-sm;
-  border-top: 3px solid $primary-color;
+  font-size: variables.$font-size-sm;
+  border-top: 3px solid variables.$primary-color;
 }
 
 // ========================================
@@ -123,7 +123,7 @@
 @media (max-width: 1200px) {
   .container {
     grid-template-columns: 1fr;
-    gap: $spacing-2xl;
+    gap: variables.$spacing-2xl;
   }
 
   .form-section,
@@ -137,7 +137,7 @@
   }
 
   .app-main {
-    padding: $spacing-2xl $spacing-md;
+    padding: variables.$spacing-2xl variables.$spacing-md;
   }
 }
 
@@ -147,16 +147,16 @@
 
 @media (max-width: 768px) {
   .app-main {
-    padding: $spacing-md $spacing-sm;
+    padding: variables.$spacing-md variables.$spacing-sm;
   }
 
   .form-section,
   .search-section,
   .list-section {
-    padding: $spacing-md;
+    padding: variables.$spacing-md;
 
     h2 {
-      font-size: $font-size-2xl;
+      font-size: variables.$font-size-2xl;
     }
   }
 }

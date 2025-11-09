@@ -3,8 +3,8 @@
  * Hamburger menu with mobile drawer and desktop navigation
  */
 
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@use "../../styles/variables";
+@use "../../styles/mixins";
 
 // ========================================
 // HAMBURGER BUTTON
@@ -12,14 +12,14 @@
 
 .hamburger {
   display: none;
-  @include flex-center;
+  @include mixins.flex-center;
   background: none;
   border: none;
   cursor: pointer;
-  padding: $spacing-sm;
+  padding: variables.$spacing-sm;
   margin-left: auto;
-  transition: all $transition-normal $easing-cubic;
-  color: $text-white;
+  transition: all variables.$transition-normal variables.$easing-cubic;
+  color: variables.$text-white;
 
   svg {
     width: 24px;
@@ -37,12 +37,12 @@
 // ========================================
 
 .header-menu {
-  @include flex-center;
-  gap: $spacing-sm;
+  @include mixins.flex-center;
+  gap: variables.$spacing-sm;
 
   &.open {
     // Mobile drawer open state
-    @include breakpoint("md") {
+    @include mixins.breakpoint("md") {
       transform: translateX(0);
     }
   }
@@ -53,8 +53,8 @@
 // ========================================
 
 .menu-item {
-  @include flex-center;
-  gap: $spacing-xs;
+  @include mixins.flex-center;
+  gap: variables.$spacing-xs;
 
   svg {
     flex-shrink: 0;
@@ -77,14 +77,18 @@
     width: 100%;
     max-width: 280px;
     height: 100vh;
-    background: linear-gradient(135deg, $primary-color 0%, #00b87d 100%);
+    background: linear-gradient(
+      135deg,
+      variables.$primary-color 0%,
+      #00b87d 100%
+    );
     box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
-    @include flex-column;
-    padding: 80px $spacing-md $spacing-md;
-    gap: $spacing-xs;
+    @include mixins.flex-column;
+    padding: 80px variables.$spacing-md variables.$spacing-md;
+    gap: variables.$spacing-xs;
     transform: translateX(100%);
-    transition: transform 0.35s $easing-cubic;
-    z-index: $z-index-modal;
+    transition: transform 0.35s variables.$easing-cubic;
+    z-index: variables.$z-index-modal;
     overflow-y: auto;
   }
 
@@ -94,14 +98,14 @@
 
   .menu-item {
     background-color: rgba(255, 255, 255, 0.15);
-    color: $text-white;
+    color: variables.$text-white;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: $spacing-sm $spacing-md;
-    border-radius: $border-radius-md;
-    font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
+    padding: variables.$spacing-sm variables.$spacing-md;
+    border-radius: variables.$border-radius-md;
+    font-size: variables.$font-size-base;
+    font-weight: variables.$font-weight-semibold;
     cursor: pointer;
-    transition: all $transition-fast $easing-cubic;
+    transition: all variables.$transition-fast variables.$easing-cubic;
     text-align: left;
     backdrop-filter: blur(10px);
     width: 100%;
@@ -127,8 +131,8 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(2px);
-    z-index: $z-index-modal - 1;
-    @include fade-in-animation;
+    z-index: variables.$z-index-modal - 1;
+    @include mixins.fade-in-animation;
   }
 
   @keyframes fadeIn {
@@ -160,7 +164,7 @@
     background: none;
     box-shadow: none;
     padding: 0;
-    gap: $spacing-sm;
+    gap: variables.$spacing-sm;
     transform: none !important;
     z-index: auto;
     overflow: visible;
@@ -168,14 +172,14 @@
 
   .menu-item {
     background-color: rgba(255, 255, 255, 0.15);
-    color: $text-white;
+    color: variables.$text-white;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: $spacing-xs $spacing-lg;
-    border-radius: $border-radius-sm;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
+    padding: variables.$spacing-xs variables.$spacing-lg;
+    border-radius: variables.$border-radius-sm;
+    font-size: variables.$font-size-sm;
+    font-weight: variables.$font-weight-semibold;
     cursor: pointer;
-    transition: all $transition-fast $easing-cubic;
+    transition: all variables.$transition-fast variables.$easing-cubic;
     text-align: center;
     backdrop-filter: blur(10px);
     width: auto;

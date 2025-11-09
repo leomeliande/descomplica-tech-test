@@ -3,8 +3,8 @@
  * Search and filter controls for student list
  */
 
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@use "../../styles/variables";
+@use "../../styles/mixins";
 
 // ========================================
 // SEARCH FILTER CONTAINER
@@ -26,18 +26,18 @@
 .filter-group {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-2xl;
+  gap: variables.$spacing-2xl;
   align-items: flex-end;
 
   input {
     flex: 1;
     min-width: 220px;
-    @include input-base;
+    @include mixins.input-base;
 
     &:focus {
-      border-color: $primary-color;
-      background-color: $bg-white;
-      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+      border-color: variables.$primary-color;
+      background-color: variables.$bg-white;
+      box-shadow: 0 0 0 3px rgba(variables.$primary-color, 0.1);
     }
 
     &:disabled {
@@ -53,15 +53,15 @@
 
 .btn-search,
 .btn-clear {
-  @include button-base;
-  padding: $spacing-sm $spacing-4xl;
-  border-radius: $border-radius-md;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-semibold;
+  @include mixins.button-base;
+  padding: variables.$spacing-sm variables.$spacing-4xl;
+  border-radius: variables.$border-radius-md;
+  font-size: variables.$font-size-sm;
+  font-weight: variables.$font-weight-semibold;
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: $spacing-xs;
+  gap: variables.$spacing-xs;
 
   svg {
     width: 16px;
@@ -77,17 +77,17 @@
 }
 
 .btn-search {
-  @include button-primary;
+  @include mixins.button-primary;
 
   &:hover:not(:disabled) {
     background-color: #00c77f;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+    box-shadow: 0 4px 12px rgba(variables.$primary-color, 0.3);
   }
 }
 
 .btn-clear {
-  @include button-secondary;
+  @include mixins.button-secondary;
 
   &:hover:not(:disabled) {
     background-color: #d1d5db;
@@ -105,8 +105,8 @@
   height: 12px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: $text-white;
-  @include spin-animation;
+  border-top-color: variables.$text-white;
+  @include mixins.spin-animation;
 }
 
 // ========================================
