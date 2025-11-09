@@ -1,0 +1,99 @@
+// ========================================
+// HAMBURGER BUTTON
+// ========================================
+
+.hamburger {
+  @include mixins.flex(row, center, center);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: functions.token("spacing", "sm");
+  margin-left: auto;
+  transition: all functions.token("durations", "normal")
+    functions.token("easings", "cubic");
+  color: functions.token("colors", "text", "white");
+  position: relative;
+  z-index: functions.token("zLayers", "header") + 1;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @include mixins.breakpoint("tablet") {
+    display: none;
+    z-index: auto;
+  }
+}
+
+// ========================================
+// HEADER MENU
+// ========================================
+
+.header-menu {
+  @include mixins.flex(column);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 280px;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    functions.token("colors", "brand", "primary") 0%,
+    #00b87d 100%
+  );
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+  padding: 80px functions.token("spacing", "md")
+    functions.token("spacing", "md");
+  gap: functions.token("spacing", "md");
+  transform: translateX(100%);
+  transition: transform 0.35s functions.token("easings", "cubic");
+  z-index: functions.token("zLayers", "modal");
+  overflow-y: auto;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  @include mixins.breakpoint("tablet") {
+    position: static;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    gap: functions.token("spacing", "sm");
+    transform: none !important;
+    z-index: auto;
+    overflow: visible;
+  }
+}
+
+// ========================================
+// MOBILE MENU OVERLAY
+// ========================================
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: functions.token("zLayers", "modal") - 1;
+
+  @include mixins.fade-in-animation;
+
+  @include mixins.breakpoint("tablet") {
+    display: none;
+  }
+}

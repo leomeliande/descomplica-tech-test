@@ -1,0 +1,176 @@
+// Design System Tokens
+
+// ========================================
+// COLOR PALETTE
+// ========================================
+
+$colors: (
+  "brand": (
+    "primary": #00e68f,
+    "primary-dark": #00c26f,
+    "primary-light": rgba(0, 230, 143, 0.25),
+  ),
+  "semantic": (
+    "success-light": #d4edda,
+    "success": #4caf50,
+    "success-dark": #388e3c,
+    "danger-light": #f8d7da,
+    "danger": #f87171,
+    "danger-dark": #dc2626,
+    "info": #0dcaf0,
+    "warning": #ffc107,
+  ),
+  "text": (
+    "primary": #1a1a1a,
+    "secondary": #666,
+    "light": #999,
+    "white": #fff,
+  ),
+  "background": (
+    "primary": #f2f2f3,
+    "secondary": #fafafa,
+    "white": #fff,
+  ),
+  "border": (
+    "default": #e0e0e0,
+    "light": #f0f0f0,
+    "disabled": #d3d3d3,
+  ),
+  "error": (
+    "bg": #fee,
+    "text": #721c24,
+    "border": #fcc,
+  ),
+);
+
+// ========================================
+// SPACING SCALE (8px base)
+// ========================================
+
+$base-space: 4px;
+
+$spacing: (
+  "0": 0,
+  "xs": $base-space,
+  "sm": $base-space * 2,
+  "md": $base-space * 3,
+  "lg": $base-space * 4,
+  "xl": $base-space * 5,
+  "2xl": $base-space * 6,
+  "3xl": $base-space * 8,
+  "4xl": $base-space * 10,
+  "5xl": $base-space * 15,
+);
+
+// ========================================
+// TYPOGRAPHY
+// ========================================
+
+$font-family-base: "Inter", sans-serif;
+$font-family-mono: monospace;
+
+$fonts: (
+  "base": $font-family-base,
+  "mono": $font-family-mono,
+);
+
+$font-sizes: (
+  "xs": 0.75rem,
+  "sm": 0.8125rem,
+  "base": 0.875rem,
+  "md": 1rem,
+  "lg": 1.125rem,
+  "xl": 1.25rem,
+  "2xl": 1.5rem,
+  "3xl": 1.75rem,
+  "4xl": 2rem,
+);
+
+$font-weights: (
+  "normal": 400,
+  "medium": 500,
+  "semibold": 600,
+  "bold": 700,
+);
+
+$line-heights: (
+  "tight": 1.2,
+  "normal": 1.5,
+  "relaxed": 1.75,
+);
+
+// ========================================
+// BORDERS & RADIUS
+// ========================================
+
+$border-radius: (
+  "none": 0,
+  "sm": 4px,
+  "md": 6px,
+  "lg": 8px,
+  "xl": 12px,
+  "full": 100%,
+);
+
+$border: (
+  "width": 1px,
+  "style": solid,
+);
+
+// ========================================
+// SHADOWS
+// ========================================
+
+$shadows: (
+  "xs": 0 1px 2px rgba(0, 0, 0, 0.05),
+  "sm": 0 1px 3px rgba(0, 0, 0, 0.1),
+  "md": 0 4px 8px rgba(0, 0, 0, 0.12),
+  "lg": 0 8px 16px rgba(0, 0, 0, 0.15),
+  "xl": 0 12px 24px rgba(0, 0, 0, 0.18),
+  "focus-ring": 0 0 0 3px rgba(0, 230, 143, 0.25),
+);
+
+// ========================================
+// Z-INDEX LAYERS
+// ========================================
+
+$z-layers: (
+  "base": 1,
+  "dropdown": 100,
+  "fixed": 500,
+  "modal-overlay": 998,
+  "modal": 999,
+  "header": 1000,
+);
+
+// ========================================
+// ANIMATIONS & TIMING
+// ========================================
+
+$durations: (
+  "instant": 0s,
+  "fast": 150ms,
+  "normal": 300ms,
+  "slow": 500ms,
+  "slower": 700ms,
+);
+
+$easings: (
+  "in": ease-in,
+  "out": ease-out,
+  "in-out": ease-in-out,
+  "cubic": cubic-bezier(0.2, 0, 0, 1),
+);
+
+// ========================================
+// RESPONSIVE BREAKPOINTS
+// ========================================
+
+$breakpoints: (
+  "mobile": 320px,
+  "mobile-lg": 480px,
+  "tablet": 768px,
+  "laptop": 1024px,
+  "desktop": 1280px,
+  "wide": 1440px,
+);

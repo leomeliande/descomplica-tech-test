@@ -6,22 +6,23 @@ export const getErrorMessage = (
   err: unknown,
   defaultMsg: string = "Erro na operação"
 ): string => {
+  let message = "";
   if (err instanceof Error) {
-    return err.message;
-  }
-
-  if (typeof err === "string") {
-    return err;
-  }
-
-  if (
+    message = err.message;
+  } else if (typeof err === "string") {
+    message = err;
+  } else if (
     err &&
     typeof err === "object" &&
     "message" in err &&
-    typeof err.message === "string"
+    typeof (err as any).message === "string"
   ) {
-    return err.message;
+    message = (err as any).message;
   }
 
-  return defaultMsg;
+  if (message && message.toLowerCase().includes("failed to fetch")) {
+    return "Não foi possível conectar ao servidor. Verifique sua conexão ou tente novamente mais tarde.";
+  }
+
+  return message || defaultMsg;
 };

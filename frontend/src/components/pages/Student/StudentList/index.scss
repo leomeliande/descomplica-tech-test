@@ -1,0 +1,22 @@
+// =================================
+// LIST SECTION
+// =================================
+
+.list-section {
+  &__title {
+    @include mixins.flex(row, space-between, baseline);
+
+    .student-count {
+      @include mixins.flex(row, center, center);
+
+      font-size: functions.token("fontSizes", "lg");
+      font-weight: functions.token("fontWeights", "bold");
+      color: functions.token("colors", "text", "white");
+      background-color: functions.token("colors", "brand", "primary");
+      padding: functions.token("spacing", "xs");
+      border-radius: functions.token("borderRadius", "full");
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

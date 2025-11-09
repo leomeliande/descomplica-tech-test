@@ -27,9 +27,6 @@ export function useStudents() {
   // Filters state
   const [filters, setFilters] = useState<Filters>({});
 
-  // Editing state
-  const [editingStudent, setEditingStudent] = useState<Student | null>(null);
-
   // Helper to execute requests with loading and error handling
   const request = useCallback(async (fn: () => Promise<void>) => {
     setLoading(true);
@@ -58,6 +55,7 @@ export function useStudents() {
             email: filtersToUse.email || undefined,
           },
         });
+
         setStudents(response.data.students.data || []);
       }),
     [request, filters]
@@ -75,7 +73,9 @@ export function useStudents() {
             email: student.email,
           },
         });
+
         const newStudent = response.data.createStudent;
+
         setStudents([newStudent, ...students]);
       }),
     [request, students]
@@ -94,9 +94,10 @@ export function useStudents() {
             email: student.email || undefined,
           },
         });
+
         const updated = response.data.updateStudent;
+
         setStudents(students.map((s) => (s._id === updated._id ? updated : s)));
-        setEditingStudent(null);
       }),
     [request, students]
   );
@@ -109,6 +110,7 @@ export function useStudents() {
           mutation: DELETE_STUDENT_MUTATION,
           variables: { id },
         });
+
         setStudents(students.filter((s) => s._id !== id));
       }),
     [request, students]
@@ -125,18 +127,6 @@ export function useStudents() {
 
   const hasFilters = Object.values(filters).some((v) => v);
 
-  // Editing methods
-  const startEditing = useCallback((student: Student) => {
-    setEditingStudent(student);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
-  const cancelEditing = useCallback(() => {
-    setEditingStudent(null);
-  }, []);
-
-  const isEditing = editingStudent !== null;
-
   return {
     // Student list
     students,
@@ -149,17 +139,12 @@ export function useStudents() {
     loading,
     error,
     setError,
+    clearError: () => setError(""),
 
     // Filters
     filters,
     applyFilters,
     clearFilters,
     hasFilters,
-
-    // Editing
-    editingStudent,
-    startEditing,
-    cancelEditing,
-    isEditing,
   };
 }

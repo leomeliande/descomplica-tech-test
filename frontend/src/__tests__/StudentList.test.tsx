@@ -1,17 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
+import { MemoryRouter } from "react-router-dom";
 import { STUDENTS_QUERY } from "../graphql/queries";
-import { StudentList } from "../components/StudentList";
+import { StudentList } from "../components/organisms/StudentList";
 
 describe("StudentList", () => {
   it("renders empty state", () => {
     render(
       <MockedProvider mocks={[]}>
-        <StudentList
-          students={[]}
-          onEdit={() => {}}
-          onDelete={async () => {}}
-        />
+        <MemoryRouter>
+          <StudentList students={[]} onDelete={async () => {}} />
+        </MemoryRouter>
       </MockedProvider>
     );
 
@@ -30,11 +29,9 @@ describe("StudentList", () => {
 
     render(
       <MockedProvider mocks={[]}>
-        <StudentList
-          students={[student]}
-          onEdit={() => {}}
-          onDelete={async () => {}}
-        />
+        <MemoryRouter>
+          <StudentList students={[student]} onDelete={async () => {}} />
+        </MemoryRouter>
       </MockedProvider>
     );
 
@@ -44,30 +41,42 @@ describe("StudentList", () => {
   it("renders multiple students", () => {
     const students = [
       {
-        _id: "1",
-        nome: "Leonardo",
-        cpf: "123.456.789-00",
-        email: "leonardo@example.com",
-        createdAt: "2025-11-07T00:00:00Z",
-        updatedAt: "2025-11-07T00:00:00Z",
-      },
-      {
-        _id: "2",
-        nome: "Maria",
-        cpf: "987.654.321-00",
-        email: "maria@example.com",
-        createdAt: "2025-11-07T00:00:00Z",
-        updatedAt: "2025-11-07T00:00:00Z",
+        request: {
+          query: STUDENTS_QUERY,
+          variables: {},
+        },
+        result: {
+          data: [
+            {
+              _id: "1",
+              nome: "Leonardo",
+              cpf: "123.456.789-00",
+              email: "leonardo@example.com",
+              createdAt: "2025-11-07T00:00:00Z",
+              updatedAt: "2025-11-07T00:00:00Z",
+            },
+            {
+              _id: "2",
+              nome: "Maria",
+              cpf: "987.654.321-00",
+              email: "maria@example.com",
+              createdAt: "2025-11-07T00:00:00Z",
+              updatedAt: "2025-11-07T00:00:00Z",
+            },
+          ],
+          count: 2,
+        },
       },
     ];
 
     render(
       <MockedProvider mocks={[]}>
-        <StudentList
-          students={students}
-          onEdit={() => {}}
-          onDelete={async () => {}}
-        />
+        <MemoryRouter>
+          <StudentList
+            students={students[0].result.data}
+            onDelete={async () => {}}
+          />
+        </MemoryRouter>
       </MockedProvider>
     );
 
@@ -87,11 +96,9 @@ describe("StudentList", () => {
 
     render(
       <MockedProvider mocks={[]}>
-        <StudentList
-          students={[student]}
-          onEdit={() => {}}
-          onDelete={async () => {}}
-        />
+        <MemoryRouter>
+          <StudentList students={[student]} onDelete={async () => {}} />
+        </MemoryRouter>
       </MockedProvider>
     );
 
