@@ -1,41 +1,50 @@
 import { useState } from "react";
 import { Menu, X, Users, UserPlus } from "lucide-react";
-import { useAppView } from "../../contexts/AppViewContext";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./index.scss";
+import { Button } from "../../atoms/Button";
 
 export const HeaderMenu = () => {
-  const { setView } = useAppView();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleNavigation = (view: "list" | "add") => {
-    setView(view);
+  const handleNavigation = (path: string) => {
+    navigate(path);
     setIsMenuOpen(false);
   };
 
   return (
     <>
-      {/* Hamburger Menu */}
-      <button
+      <Button
         className="hamburger"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
+        variant="secondary"
       >
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      </Button>
 
-      {/* Mobile Menu */}
       <nav className={`header-menu ${isMenuOpen ? "open" : ""}`}>
-        <button onClick={() => handleNavigation("list")} className="menu-item">
+        <Button
+          onClick={() => handleNavigation("/")}
+          variant="secondary"
+          disabled={location.pathname === "/"}
+        >
           <Users size={18} />
           Alunos
-        </button>
-        <button onClick={() => handleNavigation("add")} className="menu-item">
+        </Button>
+
+        <Button
+          onClick={() => handleNavigation("/novo")}
+          variant="secondary"
+          disabled={location.pathname === "/novo"}
+        >
           <UserPlus size={18} />
-          Novo Aluno
-        </button>
+          Novo aluno
+        </Button>
       </nav>
 
-      {/* Overlay */}
       {isMenuOpen && (
         <div
           className="menu-overlay"

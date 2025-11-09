@@ -1,5 +1,3 @@
-@use "./styles/functions";
-@use "./styles/mixins";
 @use "sass:map";
 
 // ========================================
@@ -7,7 +5,8 @@
 // ========================================
 
 .app {
-  @include mixins.flex-column;
+  @include mixins.flex(column);
+
   min-height: 100vh;
 }
 
@@ -16,9 +15,9 @@
 // ========================================
 
 .app-main {
-  padding: functions.token("spacing", "md") functions.token("spacing", "sm");
-  @include mixins.flex-center;
-  justify-content: center;
+  padding: functions.token("spacing", "xl") functions.token("spacing", "md");
+
+  @include mixins.flex(row, center, center);
 
   @include mixins.breakpoint("tablet") {
     padding: functions.token("spacing", "2xl") functions.token("spacing", "md");
@@ -30,7 +29,8 @@
 // ========================================
 
 .app-container {
-  @include mixins.flex-column;
+  @include mixins.flex(column);
+
   gap: functions.token("spacing", "2xl");
   max-width: 100%;
   flex: 1;
@@ -41,73 +41,25 @@
 }
 
 // ========================================
-// SECTIONS
-// ========================================
-
-.form-section,
-.search-section,
-.list-section {
-  display: block;
-  background: transparent;
-  border-radius: 0;
-  padding: functions.token("spacing", "md");
-  box-shadow: none;
-  border: none;
-
-  h2 {
-    font-size: functions.token("fontSizes", "2xl");
-    font-weight: functions.token("fontWeights", "semibold");
-    margin-bottom: functions.token("spacing", "2xl");
-    color: functions.token("colors", "text", "primary");
-
-    @include mixins.breakpoint("tablet") {
-      font-size: functions.token("fontSizes", "4xl");
-    }
-  }
-}
-
-.form-section {
-  position: static;
-
-  @include mixins.breakpoint("laptop") {
-    position: sticky;
-    top: 80px;
-  }
-}
-
-.search-section,
-.list-section {
-  margin-bottom: 0;
-}
-
-// ========================================
 // ERROR MESSAGE
 // ========================================
 
 .app-error {
+  @include mixins.flex(
+    row,
+    flex-start,
+    center,
+    functions.token("spacing", "md")
+  );
+
   padding: functions.token("spacing", "md");
   background-color: functions.token("colors", "error", "bg");
   color: functions.token("colors", "error", "text");
   border: 1px solid functions.token("colors", "error", "border");
   border-radius: functions.token("borderRadius", "sm");
-  margin-bottom: functions.token("spacing", "4xl");
   font-size: functions.token("fontSizes", "sm");
+
   @include mixins.slide-down-animation;
-}
-
-// ========================================
-// SLIDE DOWN ANIMATION
-// ========================================
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 // ========================================

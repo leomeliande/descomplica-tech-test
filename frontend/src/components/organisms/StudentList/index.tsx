@@ -1,23 +1,24 @@
 import React from "react";
+import { Button } from "../../atoms/Button";
 import { Pencil, Trash2 } from "lucide-react";
-import { Student } from "../../types";
-import { formatCPFDisplay } from "../../utils";
+import { Student } from "../../../types";
+import { formatCPFDisplay } from "../../../utils";
+import { useNavigate } from "react-router-dom";
 import "./index.scss";
 
 interface StudentListProps {
   students: Student[];
-  onEdit: (student: Student) => void;
   onDelete: (id: string) => Promise<void>;
   loading?: boolean;
 }
 
 export const StudentList: React.FC<StudentListProps> = ({
   students,
-  onEdit,
   onDelete,
   loading = false,
 }) => {
   const [deleteLoading, setDeleteLoading] = React.useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleDelete = async (id: string) => {
     if (window.confirm("Tem certeza que deseja deletar este aluno?")) {
@@ -50,6 +51,7 @@ export const StudentList: React.FC<StudentListProps> = ({
             <th>Ações</th>
           </tr>
         </thead>
+
         <tbody>
           {students.map((student) => (
             <tr key={student._id}>
@@ -57,33 +59,26 @@ export const StudentList: React.FC<StudentListProps> = ({
               <td>{formatCPFDisplay(student.cpf)}</td>
               <td>{student.email}</td>
               <td className="actions">
-                <button
-                  className="btn-edit"
-                  onClick={() => onEdit(student)}
+                <Button
+                  variant="primary"
+                  onClick={() => navigate(`/editar/${student._id}`)}
                   disabled={loading || deleteLoading !== null}
                   title="Editar aluno"
                 >
                   <Pencil size={16} />
                   Editar
-                </button>
-                <button
-                  className="btn-delete"
+                </Button>
+
+                <Button
+                  variant="danger"
                   onClick={() => handleDelete(student._id || "")}
                   disabled={loading || deleteLoading !== null}
+                  loading={deleteLoading === student._id}
                   title="Deletar aluno"
                 >
-                  {deleteLoading === student._id ? (
-                    <>
-                      <span className="spinner"></span>
-                      Deletando...
-                    </>
-                  ) : (
-                    <>
-                      <Trash2 size={16} />
-                      Deletar
-                    </>
-                  )}
-                </button>
+                  <Trash2 size={16} />
+                  Deletar
+                </Button>
               </td>
             </tr>
           ))}

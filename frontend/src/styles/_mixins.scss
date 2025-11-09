@@ -17,50 +17,73 @@
 }
 
 // Flexbox utilities
-@mixin flex-center {
+@mixin flex($flow: row, $justify: flex-start, $align: stretch, $gap: null) {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-flow: $flow;
+  justify-content: $justify;
+  align-items: $align;
+
+  @if $gap != null {
+    gap: $gap;
+  }
 }
 
-@mixin flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-@mixin flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-@mixin flex-column-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin grid-center {
+// Grid genérico
+@mixin grid($justify: stretch, $align: stretch, $gap: null) {
   display: grid;
-  place-items: center;
+  justify-items: $justify;
+  align-items: $align;
+
+  @if $gap != null {
+    gap: $gap;
+  }
 }
 
 // Button base and variants
+@mixin button(
+  $bg-color,
+  $text-color,
+  $hover-bg: null,
+  $active-transform: null,
+  $hover-box-shadow: null
+) {
+  @include button-base;
+
+  background-color: $bg-color;
+  color: $text-color;
+
+  &:disabled {
+    background-color: functions.token("colors", "border", "disabled");
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: if($hover-bg, $hover-bg, $bg-color);
+    transform: if($active-transform, $active-transform, none);
+    @if $hover-box-shadow {
+      box-shadow: $hover-box-shadow;
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: if($active-transform, none, none);
+  }
+}
+
 @mixin button-base {
   padding: functions.token("spacing", "md") functions.token("spacing", "lg");
   border: functions.token("borders", "width")
     functions.token("borders", "style")
     functions.token("colors", "border", "default");
-  border-radius: functions.token("borderRadius", "md");
-  font-size: functions.token("fontSizes", "sm");
+  font-size: functions.token("fontSizes", "base");
   font-weight: functions.token("fontWeights", "semibold");
   cursor: pointer;
   transition: all functions.token("durations", "fast")
     functions.token("easings", "cubic");
   white-space: nowrap;
-  @include flex-center;
-  gap: functions.token("spacing", "sm");
+  border-radius: 2.22rem;
+  max-height: 3rem;
 
   &:disabled {
     background-color: functions.token("colors", "border", "disabled");
@@ -70,48 +93,41 @@
 }
 
 @mixin button-primary {
-  background-color: functions.token("colors", "brand", "primary");
-  color: functions.token("colors", "text", "white");
-
-  &:hover:not(:disabled) {
-    background-color: functions.token("colors", "brand", "primary-dark");
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 230, 143, 0.3);
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(0);
-  }
+  @include button(
+    functions.token("colors", "brand", "primary"),
+    functions.token("colors", "text", "white"),
+    functions.token("colors", "brand", "primary-dark"),
+    translateY(-2px),
+    0 4px 12px rgba(0, 230, 143, 0.3)
+  );
 }
 
 @mixin button-secondary {
-  background-color: functions.token("colors", "border", "light");
-  color: #374151;
-
-  &:hover:not(:disabled) {
-    background-color: #d1d5db;
-    transform: translateY(-2px);
-  }
+  @include button(
+    functions.token("colors", "border", "light"),
+    #374151,
+    #d1d5db,
+    translateY(-2px)
+  );
 }
 
 @mixin button-danger {
-  background-color: functions.token("colors", "semantic", "danger");
-  color: functions.token("colors", "text", "white");
-
-  &:hover:not(:disabled) {
-    background-color: functions.token("colors", "semantic", "danger-dark");
-    transform: translateY(-1px);
-  }
+  @include button(
+    functions.token("colors", "semantic", "danger"),
+    functions.token("colors", "text", "white"),
+    functions.token("colors", "semantic", "danger-dark"),
+    translateY(-1px)
+  );
 }
 
 // Form inputs and labels
 @mixin input-base {
-  padding: functions.token("spacing", "lg") functions.token("spacing", "lg");
+  padding: functions.token("spacing", "md") functions.token("spacing", "md");
   border: functions.token("borders", "width")
     functions.token("borders", "style")
     functions.token("colors", "border", "default");
   border-radius: functions.token("borderRadius", "lg");
-  font-size: functions.token("fontSizes", "md");
+  font-size: functions.token("fontSizes", "base");
   transition: all functions.token("durations", "fast");
   background-color: functions.token("colors", "background", "secondary");
 

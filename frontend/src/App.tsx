@@ -1,34 +1,19 @@
-import { useEffect } from "react";
-import { useStudents } from "./hooks";
-import { Header } from "./components/Header";
-import { AppViewProvider } from "./contexts/AppViewContext";
-import { AppContent } from "./components/AppContent";
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "./routes";
+import { AppTemplate } from "./components/templates/App";
+import { ToastProvider } from "./hooks";
 
 import "./styles/index.scss";
 
-import "./App.scss";
-
 function App() {
-  const { loadStudents } = useStudents();
-
-  useEffect(() => {
-    loadStudents();
-  }, [loadStudents]);
-
   return (
-    <AppViewProvider>
-      <div className="app">
-        <Header />
-
-        <main className="app-main">
-          <AppContent />
-        </main>
-
-        <footer className="app-footer">
-          <p>&copy; 2025 Descomplica. Todos os direitos reservados.</p>
-        </footer>
-      </div>
-    </AppViewProvider>
+    <ToastProvider>
+      <BrowserRouter>
+        <AppTemplate>
+          <AppRoutes />
+        </AppTemplate>
+      </BrowserRouter>
+    </ToastProvider>
   );
 }
 

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Button } from "../../atoms/Button";
+import { Input } from "../../atoms/Input";
 import { Save, AlertCircle } from "lucide-react";
-import { Student } from "../../types";
-import { formatCPF } from "../../utils";
+import { Student } from "../../../types";
+import { formatCPF } from "../../../utils";
 import "./index.scss";
 
 interface StudentFormProps {
@@ -52,65 +54,52 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   return (
     <form onSubmit={handleSubmit} className="student-form">
       <div className="form-group">
-        <label htmlFor="nome">Nome:</label>
-        <input
+        <Input
           id="nome"
           type="text"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
+          label="Nome:"
           placeholder="Digite o nome do aluno"
           disabled={loading}
           required
+          error={nome.trim() === "" ? "O nome é obrigatório" : undefined}
         />
       </div>
 
       <div className="form-group">
-        <label htmlFor="cpf">CPF:</label>
-        <input
+        <Input
           id="cpf"
           type="text"
+          label="CPF:"
           value={formatCPF(cpf)}
           onChange={handleCPFChange}
           placeholder="000.000.000-00"
           disabled={loading}
           maxLength={14}
           required
+          error={cpf.trim() === "" ? "O CPF é obrigatório" : undefined}
         />
       </div>
 
       <div className="form-group">
-        <label htmlFor="email">Email:</label>
-        <input
+        <Input
           id="email"
-          type="email"
+          type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          label="Email:"
           placeholder="Digite o email do aluno"
           disabled={loading}
           required
+          error={email.trim() === "" ? "O email é obrigatório" : undefined}
         />
       </div>
 
-      {(error || localError) && (
-        <div className="error-message">
-          <AlertCircle size={16} />
-          {error || localError}
-        </div>
-      )}
-
-      <button type="submit" disabled={loading} className="submit-button">
-        {loading ? (
-          <>
-            <span className="spinner"></span>
-            Salvando...
-          </>
-        ) : (
-          <>
-            <Save size={16} />
-            {mode === "create" ? "Adicionar Aluno" : "Atualizar Aluno"}
-          </>
-        )}
-      </button>
+      <Button type="submit" loading={loading} variant="primary">
+        <Save size={16} />
+        {mode === "create" ? "Adicionar Aluno" : "Atualizar Aluno"}
+      </Button>
     </form>
   );
 };

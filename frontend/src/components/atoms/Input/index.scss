@@ -1,0 +1,28 @@
+.input-wrapper {
+  @include mixins.flex(
+    column,
+    flex-start,
+    stretch,
+    functions.token("spacing", "sm")
+  );
+
+  .input {
+    @include mixins.input-base;
+
+    &.input-error {
+      border-color: functions.token("colors", "semantic", "danger");
+      box-shadow: 0 0 0 2px
+        functions.token("colors", "semantic", "danger-light");
+    }
+  }
+
+  .input-label {
+    @include mixins.label-base;
+  }
+
+  .input-error-message {
+    font-weight: functions.token("fontWeights", "medium");
+    color: functions.token("colors", "semantic", "danger");
+    font-size: functions.token("fontSizes", "xs");
+  }
+}
