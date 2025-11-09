@@ -1,0 +1,67 @@
+/**
+ * Header Component Styles
+ */
+
+@use "../../styles/functions";
+@use "../../styles/mixins";
+
+// ========================================
+// HEADER CONTAINER
+// ========================================
+
+.app-header {
+  background-color: functions.token("colors", "brand", "primary");
+  color: functions.token("colors", "text", "white");
+  padding: functions.token("spacing", "md") functions.token("spacing", "lg");
+  box-shadow: functions.token("shadows", "md");
+
+  @include mixins.flex-between;
+
+  position: relative;
+
+  @include mixins.breakpoint("tablet") {
+    padding: functions.token("spacing", "lg") functions.token("spacing", "3xl");
+  }
+}
+
+// ========================================
+// HEADER LOGO
+// ========================================
+
+.header-logo {
+  @include mixins.flex-center;
+
+  gap: functions.token("spacing", "xl");
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+  transition: opacity functions.token("durations", "fast");
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  svg {
+    color: functions.token("colors", "text", "white");
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+
+    @include mixins.breakpoint("tablet") {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  h1 {
+    margin: 0;
+    font-size: functions.token("fontSizes", "lg");
+    font-weight: functions.token("fontWeights", "bold");
+    letter-spacing: -0.5px;
+
+    @include mixins.breakpoint("tablet") {
+      font-size: functions.token("fontSizes", "4xl");
+    }
+  }
+}

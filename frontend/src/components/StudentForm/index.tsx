@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Save, AlertCircle } from "lucide-react";
 import { Student } from "../../types";
 import { formatCPF } from "../../utils";
-import "./styles.css";
+import "./index.scss";
 
 interface StudentFormProps {
   onSubmit: (
@@ -32,13 +33,14 @@ export const StudentForm: React.FC<StudentFormProps> = ({
 
     try {
       await onSubmit({ nome, cpf, email });
+
       setNome("");
       setCpf("");
       setEmail("");
     } catch (err) {
-      // Mensagem vem direto do backend
       const errorMsg =
         err instanceof Error ? err.message : "Erro ao salvar aluno";
+
       setLocalError(errorMsg);
     }
   };
@@ -90,15 +92,24 @@ export const StudentForm: React.FC<StudentFormProps> = ({
       </div>
 
       {(error || localError) && (
-        <div className="error-message">{error || localError}</div>
+        <div className="error-message">
+          <AlertCircle size={16} />
+          {error || localError}
+        </div>
       )}
 
       <button type="submit" disabled={loading} className="submit-button">
-        {loading
-          ? "Carregando..."
-          : mode === "create"
-          ? "Adicionar Aluno"
-          : "Atualizar Aluno"}
+        {loading ? (
+          <>
+            <span className="spinner"></span>
+            Salvando...
+          </>
+        ) : (
+          <>
+            <Save size={16} />
+            {mode === "create" ? "Adicionar Aluno" : "Atualizar Aluno"}
+          </>
+        )}
       </button>
     </form>
   );

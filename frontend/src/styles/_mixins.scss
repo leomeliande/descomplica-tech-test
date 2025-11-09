@@ -1,0 +1,270 @@
+// Reusable Sass mixins and utility functions
+
+@use "functions";
+@use "sass:map";
+
+// Responsive breakpoints mixin
+@mixin breakpoint($point) {
+  $bp: functions.token("breakpoints", $point) !default;
+
+  @if $bp {
+    @media (min-width: $bp) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$point}' not found";
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+// Button base and variants
+@mixin button-base {
+  padding: functions.token("spacing", "md") functions.token("spacing", "lg");
+  border: functions.token("borders", "width")
+    functions.token("borders", "style")
+    functions.token("colors", "border", "default");
+  border-radius: functions.token("borderRadius", "md");
+  font-size: functions.token("fontSizes", "sm");
+  font-weight: functions.token("fontWeights", "semibold");
+  cursor: pointer;
+  transition: all functions.token("durations", "fast")
+    functions.token("easings", "cubic");
+  white-space: nowrap;
+  @include flex-center;
+  gap: functions.token("spacing", "sm");
+
+  &:disabled {
+    background-color: functions.token("colors", "border", "disabled");
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+@mixin button-primary {
+  background-color: functions.token("colors", "brand", "primary");
+  color: functions.token("colors", "text", "white");
+
+  &:hover:not(:disabled) {
+    background-color: functions.token("colors", "brand", "primary-dark");
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 230, 143, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  background-color: functions.token("colors", "border", "light");
+  color: #374151;
+
+  &:hover:not(:disabled) {
+    background-color: #d1d5db;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin button-danger {
+  background-color: functions.token("colors", "semantic", "danger");
+  color: functions.token("colors", "text", "white");
+
+  &:hover:not(:disabled) {
+    background-color: functions.token("colors", "semantic", "danger-dark");
+    transform: translateY(-1px);
+  }
+}
+
+// Form inputs and labels
+@mixin input-base {
+  padding: functions.token("spacing", "lg") functions.token("spacing", "lg");
+  border: functions.token("borders", "width")
+    functions.token("borders", "style")
+    functions.token("colors", "border", "default");
+  border-radius: functions.token("borderRadius", "lg");
+  font-size: functions.token("fontSizes", "md");
+  transition: all functions.token("durations", "fast");
+  background-color: functions.token("colors", "background", "secondary");
+
+  &:focus {
+    outline: none;
+    border-color: functions.token("colors", "brand", "primary");
+    background-color: functions.token("colors", "background", "white");
+    box-shadow: 0 0 0 3px functions.token("colors", "brand", "primary-light");
+  }
+
+  &:disabled {
+    background-color: functions.token("colors", "background", "primary");
+    cursor: not-allowed;
+  }
+}
+
+@mixin label-base {
+  font-weight: functions.token("fontWeights", "medium");
+  color: functions.token("colors", "text", "primary");
+  font-size: functions.token("fontSizes", "sm");
+  letter-spacing: 0.5px;
+}
+
+// Keyframe animations
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+// Animation mixins
+@mixin spin-animation {
+  animation: spin functions.token("durations", "slow") linear infinite;
+}
+
+@mixin slide-down-animation {
+  animation: slideDown functions.token("durations", "fast")
+    functions.token("easings", "out");
+}
+
+@mixin fade-in-animation {
+  animation: fadeIn functions.token("durations", "fast");
+}
+
+@mixin slide-in-right-animation {
+  animation: slideInRight functions.token("durations", "normal")
+    functions.token("easings", "cubic");
+}
+
+// Text and typography utilities
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin text-uppercase {
+  font-size: functions.token("fontSizes", "xs");
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+// Card and container utilities
+@mixin card-base {
+  background: functions.token("colors", "background", "white");
+  border-radius: functions.token("borderRadius", "lg");
+  box-shadow: functions.token("shadows", "sm");
+  border: functions.token("borders", "width")
+    functions.token("borders", "style")
+    functions.token("colors", "border", "light");
+}
+
+@mixin card-elevated {
+  background: functions.token("colors", "background", "white");
+  border-radius: functions.token("borderRadius", "lg");
+  box-shadow: functions.token("shadows", "md");
+}
+
+// Hover and interaction effects
+@mixin hover-lift {
+  transition: all functions.token("durations", "fast");
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: functions.token("shadows", "md");
+  }
+}
+
+@mixin hover-scale {
+  transition: all functions.token("durations", "fast");
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+// Accessibility utilities
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@mixin focus-ring {
+  outline: 2px solid functions.token("colors", "brand", "primary");
+  outline-offset: 2px;
+}
