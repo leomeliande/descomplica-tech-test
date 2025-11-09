@@ -3,7 +3,7 @@
  * Form for adding/editing student information
  */
 
-@use "../../styles/variables";
+@use "../../styles/functions";
 @use "../../styles/mixins";
 
 // ========================================
@@ -12,11 +12,12 @@
 
 .student-form {
   @include mixins.flex-column;
-  gap: variables.$spacing-2xl;
-  padding: variables.$spacing-2xl;
-  background: variables.$bg-white;
-  border-radius: variables.$border-radius-md;
-  box-shadow: variables.$shadow-sm;
+
+  gap: functions.token("spacing", "2xl");
+  padding: functions.token("spacing", "2xl");
+  background: functions.token("colors", "background", "white");
+  border-radius: functions.token("borderRadius", "md");
+  box-shadow: functions.token("shadows", "sm");
   border: 1px solid #f0f0f0;
 }
 
@@ -26,7 +27,8 @@
 
 .form-group {
   @include mixins.flex-column;
-  gap: variables.$spacing-sm;
+
+  gap: functions.token("spacing", "sm");
 
   label {
     @include mixins.label-base;
@@ -36,9 +38,9 @@
     @include mixins.input-base;
 
     &:focus {
-      border-color: variables.$primary-color;
-      background-color: variables.$bg-white;
-      box-shadow: 0 0 0 3px rgba(variables.$primary-color, 0.1);
+      border-color: functions.token("colors", "brand", "primary");
+      background-color: functions.token("colors", "background", "white");
+      box-shadow: 0 0 0 3px functions.token("colors", "brand", "primary");
     }
 
     &:disabled {
@@ -55,13 +57,13 @@
 .error-message {
   display: flex;
   align-items: center;
-  gap: variables.$spacing-md;
-  padding: variables.$spacing-sm;
+  gap: functions.token("spacing", "md");
+  padding: functions.token("spacing", "sm");
   background-color: #f8d7da;
-  color: #721c24;
+  color: functions.token("colors", "error", "text");
   border: 1px solid #f5c6cb;
-  border-radius: variables.$border-radius-sm;
-  font-size: variables.$font-size-sm;
+  border-radius: functions.token("borderRadius", "sm");
+  font-size: functions.token("fontSizes", "sm");
 
   svg {
     width: 16px;
@@ -77,10 +79,11 @@
 .submit-button {
   @include mixins.button-base;
   @include mixins.button-primary;
+
   align-self: flex-start;
   display: flex;
   align-items: center;
-  gap: variables.$spacing-xs;
+  gap: functions.token("spacing", "xs");
 
   svg {
     width: 16px;
@@ -91,7 +94,7 @@
   &:hover:not(:disabled) {
     background-color: #00c77f;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(variables.$primary-color, 0.3);
+    box-shadow: 0 4px 12px functions.token("colors", "brand", "primary");
   }
 
   &:disabled {
@@ -110,6 +113,7 @@
   height: 12px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: variables.$text-white;
+  border-top-color: functions.token("colors", "text", "white");
+
   @include mixins.spin-animation;
 }

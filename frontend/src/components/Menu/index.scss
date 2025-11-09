@@ -1,9 +1,4 @@
-/**
- * Menu Component Styles
- * Hamburger menu with mobile drawer and desktop navigation
- */
-
-@use "../../styles/variables";
+@use "../../styles/functions";
 @use "../../styles/mixins";
 
 // ========================================
@@ -11,15 +6,16 @@
 // ========================================
 
 .hamburger {
-  display: none;
+  display: flex;
   @include mixins.flex-center;
   background: none;
   border: none;
   cursor: pointer;
-  padding: variables.$spacing-sm;
+  padding: functions.token("spacing", "sm");
   margin-left: auto;
-  transition: all variables.$transition-normal variables.$easing-cubic;
-  color: variables.$text-white;
+  transition: all functions.token("durations", "normal")
+    functions.token("easings", "cubic");
+  color: functions.token("colors", "text", "white");
 
   svg {
     width: 24px;
@@ -30,21 +26,55 @@
   &:hover {
     opacity: 0.8;
   }
+
+  @include mixins.breakpoint("tablet") {
+    display: none;
+  }
 }
 
 // ========================================
-// HEADER MENU - DESKTOP
+// HEADER MENU
 // ========================================
 
 .header-menu {
-  @include mixins.flex-center;
-  gap: variables.$spacing-sm;
+  @include mixins.flex-column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 280px;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    functions.token("colors", "brand", "primary") 0%,
+    #00b87d 100%
+  );
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+  padding: 80px functions.token("spacing", "md")
+    functions.token("spacing", "md");
+  gap: functions.token("spacing", "xs");
+  transform: translateX(100%);
+  transition: transform 0.35s functions.token("easings", "cubic");
+  z-index: functions.token("zLayers", "modal");
+  overflow-y: auto;
 
   &.open {
-    // Mobile drawer open state
-    @include mixins.breakpoint("md") {
-      transform: translateX(0);
-    }
+    transform: translateX(0);
+  }
+
+  @include mixins.breakpoint("tablet") {
+    position: static;
+    display: flex !important;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    gap: functions.token("spacing", "sm");
+    transform: none !important;
+    z-index: auto;
+    overflow: visible;
   }
 }
 
@@ -54,141 +84,72 @@
 
 .menu-item {
   @include mixins.flex-center;
-  gap: variables.$spacing-xs;
+  gap: functions.token("spacing", "xs");
+  width: 100%;
+  justify-content: flex-start;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: functions.token("colors", "text", "white");
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: functions.token("spacing", "sm") functions.token("spacing", "md");
+  border-radius: functions.token("borderRadius", "md");
+  font-size: functions.token("fontSizes", "base");
+  font-weight: functions.token("fontWeights", "semibold");
+  cursor: pointer;
+  text-align: left;
+  transition: all functions.token("durations", "fast")
+    functions.token("easings", "cubic");
+  backdrop-filter: blur(10px);
 
-  svg {
-    flex-shrink: 0;
-  }
-}
-
-// ========================================
-// MOBILE STYLES (max-width: 768px)
-// ========================================
-
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-
-  .header-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    max-width: 280px;
-    height: 100vh;
-    background: linear-gradient(
-      135deg,
-      variables.$primary-color 0%,
-      #00b87d 100%
-    );
-    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
-    @include mixins.flex-column;
-    padding: 80px variables.$spacing-md variables.$spacing-md;
-    gap: variables.$spacing-xs;
-    transform: translateX(100%);
-    transition: transform 0.35s variables.$easing-cubic;
-    z-index: variables.$z-index-modal;
-    overflow-y: auto;
+  &:hover,
+  &:active {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(4px);
   }
 
-  .header-menu.open {
-    transform: translateX(0);
-  }
-
-  .menu-item {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: variables.$text-white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: variables.$spacing-sm variables.$spacing-md;
-    border-radius: variables.$border-radius-md;
-    font-size: variables.$font-size-base;
-    font-weight: variables.$font-weight-semibold;
-    cursor: pointer;
-    transition: all variables.$transition-fast variables.$easing-cubic;
-    text-align: left;
-    backdrop-filter: blur(10px);
-    width: 100%;
-    justify-content: flex-start;
-
-    &:active,
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.25);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateX(4px);
-    }
-  }
-
-  // ========================================
-  // MOBILE MENU OVERLAY
-  // ========================================
-
-  .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2px);
-    z-index: variables.$z-index-modal - 1;
-    @include mixins.fade-in-animation;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-}
-
-// ========================================
-// DESKTOP STYLES (min-width: 769px)
-// ========================================
-
-@media (min-width: 769px) {
-  .hamburger,
-  .menu-overlay {
-    display: none !important;
-  }
-
-  .header-menu {
-    display: flex !important;
-    flex-direction: row;
-    position: static;
-    width: auto;
-    height: auto;
-    background: none;
-    box-shadow: none;
-    padding: 0;
-    gap: variables.$spacing-sm;
-    transform: none !important;
-    z-index: auto;
-    overflow: visible;
-  }
-
-  .menu-item {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: variables.$text-white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: variables.$spacing-xs variables.$spacing-lg;
-    border-radius: variables.$border-radius-sm;
-    font-size: variables.$font-size-sm;
-    font-weight: variables.$font-weight-semibold;
-    cursor: pointer;
-    transition: all variables.$transition-fast variables.$easing-cubic;
-    text-align: center;
-    backdrop-filter: blur(10px);
+  @include mixins.breakpoint("tablet") {
     width: auto;
     justify-content: center;
+    padding: functions.token("spacing", "xs") functions.token("spacing", "lg");
+    border-radius: functions.token("borderRadius", "sm");
+    font-size: functions.token("fontSizes", "sm");
+    text-align: center;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.25);
-      border-color: rgba(255, 255, 255, 0.3);
       transform: translateY(-2px);
     }
+  }
+}
+
+// ========================================
+// MOBILE MENU OVERLAY
+// ========================================
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: functions.token("zLayers", "modal") - 1;
+  @include mixins.fade-in-animation;
+
+  @include mixins.breakpoint("tablet") {
+    display: none;
+  }
+}
+
+// ========================================
+// KEYFRAMES
+// ========================================
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

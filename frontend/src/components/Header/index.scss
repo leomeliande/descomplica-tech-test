@@ -2,210 +2,66 @@
  * Header Component Styles
  */
 
-@use "../../styles/variables.scss";
+@use "../../styles/functions";
 @use "../../styles/mixins";
 
+// ========================================
+// HEADER CONTAINER
+// ========================================
+
 .app-header {
-  background-color: variables.$primary-color;
-  color: variables.$text-white;
-  padding: variables.$spacing-lg variables.$spacing-3xl;
-  box-shadow: variables.$shadow-md;
+  background-color: functions.token("colors", "brand", "primary");
+  color: functions.token("colors", "text", "white");
+  padding: functions.token("spacing", "md") functions.token("spacing", "lg");
+  box-shadow: functions.token("shadows", "md");
+
   @include mixins.flex-between;
+
   position: relative;
 
-  @include mixins.breakpoint("md") {
-    padding: variables.$spacing-md variables.$spacing-lg;
+  @include mixins.breakpoint("tablet") {
+    padding: functions.token("spacing", "lg") functions.token("spacing", "3xl");
   }
 }
 
+// ========================================
+// HEADER LOGO
+// ========================================
+
 .header-logo {
   @include mixins.flex-center;
-  gap: variables.$spacing-xl;
+
+  gap: functions.token("spacing", "xl");
   cursor: pointer;
   text-decoration: none;
   color: inherit;
   flex: 1;
-  transition: opacity variables.$transition-fast;
+  transition: opacity functions.token("durations", "fast");
 
   &:hover {
     opacity: 0.9;
   }
 
   svg {
-    color: variables.$text-white;
+    color: functions.token("colors", "text", "white");
     flex-shrink: 0;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
 
-    @include mixins.breakpoint("md") {
-      width: 32px;
-      height: 32px;
+    @include mixins.breakpoint("tablet") {
+      width: 40px;
+      height: 40px;
     }
   }
 
   h1 {
     margin: 0;
-    font-size: variables.$font-size-4xl;
-    font-weight: variables.$font-weight-bold;
+    font-size: functions.token("fontSizes", "lg");
+    font-weight: functions.token("fontWeights", "bold");
     letter-spacing: -0.5px;
 
-    @include mixins.breakpoint("md") {
-      font-size: variables.$font-size-lg;
-    }
-  }
-}
-
-// ========================================
-// HAMBURGER MENU
-// ========================================
-
-.hamburger {
-  @include mixins.flex-center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: variables.$spacing-md;
-  margin-left: auto;
-  transition: all variables.$transition-fast;
-  color: variables.$text-white;
-  display: none;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  svg {
-    width: 24px;
-    height: 24px;
-    stroke-width: 2;
-  }
-
-  @include mixins.breakpoint("md") {
-    display: flex;
-  }
-}
-
-// ========================================
-// HEADER MENU
-// ========================================
-
-.header-menu {
-  @include mixins.flex-center;
-  gap: variables.$spacing-md;
-  align-items: center;
-
-  @include mixins.breakpoint("md") {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    max-width: 280px;
-    height: 100vh;
-    background: linear-gradient(
-      135deg,
-      variables.$primary-color 0%,
-      #00b87d 100%
-    );
-    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
-    @include mixins.flex-column;
-    padding: 80px variables.$spacing-lg variables.$spacing-lg;
-    gap: variables.$spacing-sm;
-    transform: translateX(100%);
-    transition: transform variables.$transition-normal variables.$easing-cubic;
-    z-index: variables.$z-index-modal;
-    overflow-y: auto;
-
-    &.open {
-      transform: translateX(0);
-    }
-  }
-}
-
-.menu-item {
-  @include mixins.flex-center;
-  gap: variables.$spacing-sm;
-
-  @include mixins.breakpoint("md") {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: variables.$text-white;
-    border: variables.$border-width solid rgba(255, 255, 255, 0.2);
-    padding: variables.$spacing-lg variables.$spacing-xl;
-    border-radius: variables.$border-radius-lg;
-    font-size: variables.$font-size-md;
-    font-weight: variables.$font-weight-semibold;
-    cursor: pointer;
-    transition: all variables.$transition-fast;
-    text-align: left;
-    backdrop-filter: blur(10px);
-    width: 100%;
-
-    &:active,
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.25);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateX(variables.$spacing-sm);
-    }
-  }
-
-  svg {
-    flex-shrink: 0;
-  }
-}
-
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(2px);
-  z-index: variables.$z-index-modal-overlay;
-  @include mixins.fade-in-animation;
-}
-
-// ========================================
-// DESKTOP MENU
-// ========================================
-
-@include mixins.breakpoint("lg") {
-  .hamburger,
-  .menu-overlay {
-    display: none !important;
-  }
-
-  .header-menu {
-    display: flex !important;
-    flex-direction: row;
-    position: static;
-    width: auto;
-    height: auto;
-    background: none;
-    box-shadow: none;
-    padding: 0;
-    gap: variables.$spacing-md;
-    transform: none !important;
-    z-index: auto;
-    overflow: visible;
-  }
-
-  .menu-item {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: variables.$text-white;
-    border: variables.$border-width solid rgba(255, 255, 255, 0.2);
-    padding: variables.$spacing-md variables.$spacing-xl;
-    border-radius: variables.$border-radius-md;
-    font-size: variables.$font-size-sm;
-    font-weight: variables.$font-weight-semibold;
-    cursor: pointer;
-    transition: all variables.$transition-fast;
-    text-align: center;
-    backdrop-filter: blur(10px);
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.25);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-2px);
+    @include mixins.breakpoint("tablet") {
+      font-size: functions.token("fontSizes", "4xl");
     }
   }
 }

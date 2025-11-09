@@ -3,7 +3,7 @@
  * Table display for listing students with edit/delete actions
  */
 
-@use "../../styles/variables";
+@use "../../styles/functions";
 @use "../../styles/mixins";
 
 // ========================================
@@ -22,33 +22,34 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: variables.$bg-white;
-  box-shadow: variables.$shadow-sm;
-  border-radius: variables.$border-radius-md;
+  background-color: functions.token("colors", "background", "white");
+  box-shadow: functions.token("shadows", "sm");
+  border-radius: functions.token("borderRadius", "md");
   overflow: hidden;
   border: 1px solid #f0f0f0;
 }
 
 thead {
   background-color: #fafafa;
-  color: variables.$text-primary;
+  color: functions.token("colors", "text", "primary");
   border-bottom: 1px solid #e0e0e0;
 }
 
 th {
-  padding: variables.$spacing-4xl variables.$spacing-md;
+  padding: functions.token("spacing", "4xl") functions.token("spacing", "md");
   text-align: left;
-  font-weight: variables.$font-weight-semibold;
-  font-size: variables.$font-size-xs;
+  font-weight: functions.token("fontWeights", "semibold");
+  font-size: functions.token("fontSizes", "xs");
   letter-spacing: 0.5px;
+
   @include mixins.text-uppercase;
 }
 
 td {
-  padding: variables.$spacing-4xl variables.$spacing-md;
+  padding: functions.token("spacing", "4xl") functions.token("spacing", "md");
   border-bottom: 1px solid #f5f5f5;
-  font-size: variables.$font-size-sm;
-  color: variables.$text-primary;
+  font-size: functions.token("fontSizes", "sm");
+  color: functions.token("colors", "text", "primary");
 }
 
 tbody {
@@ -69,7 +70,7 @@ tbody {
 
 .actions {
   display: flex;
-  gap: variables.$spacing-sm;
+  gap: functions.token("spacing", "sm");
 }
 
 // ========================================
@@ -79,10 +80,11 @@ tbody {
 .btn-edit,
 .btn-delete {
   @include mixins.button-base;
-  padding: 8px variables.$spacing-md;
-  border-radius: variables.$border-radius-sm;
-  font-size: variables.$font-size-xs;
-  font-weight: variables.$font-weight-semibold;
+
+  padding: 8px functions.token("spacing", "md");
+  border-radius: functions.token("borderRadius", "sm");
+  font-size: functions.token("fontSizes", "xs");
+  font-weight: functions.token("fontWeights", "semibold");
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -129,7 +131,8 @@ tbody {
   height: 12px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: variables.$text-white;
+  border-top-color: functions.token("colors", "text", "white");
+
   @include mixins.spin-animation;
 }
 
@@ -139,9 +142,9 @@ tbody {
 
 .empty-state {
   text-align: center;
-  padding: variables.$spacing-2xl variables.$spacing-md;
+  padding: functions.token("spacing", "2xl") functions.token("spacing", "md");
   background-color: #f9f9f9;
-  border-radius: variables.$border-radius-md;
+  border-radius: functions.token("borderRadius", "md");
   color: #666;
-  font-size: variables.$font-size-base;
+  font-size: functions.token("fontSizes", "base");
 }

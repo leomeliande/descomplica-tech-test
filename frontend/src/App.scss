@@ -1,11 +1,6 @@
-/**
- * App Main Styles
- * Global layout, containers, and page sections
- */
-
-@use "./styles/variables";
+@use "./styles/functions";
 @use "./styles/mixins";
-@use "./styles/globals";
+@use "sass:map";
 
 // ========================================
 // APP LAYOUT
@@ -21,9 +16,13 @@
 // ========================================
 
 .app-main {
-  padding: variables.$spacing-2xl;
+  padding: functions.token("spacing", "md") functions.token("spacing", "sm");
   @include mixins.flex-center;
   justify-content: center;
+
+  @include mixins.breakpoint("tablet") {
+    padding: functions.token("spacing", "2xl") functions.token("spacing", "md");
+  }
 }
 
 // ========================================
@@ -32,9 +31,13 @@
 
 .app-container {
   @include mixins.flex-column;
-  gap: variables.$spacing-2xl;
-  max-width: 1200px;
+  gap: functions.token("spacing", "2xl");
+  max-width: 100%;
   flex: 1;
+
+  @include mixins.breakpoint("laptop") {
+    max-width: 1200px;
+  }
 }
 
 // ========================================
@@ -47,27 +50,32 @@
   display: block;
   background: transparent;
   border-radius: 0;
-  padding: 0;
+  padding: functions.token("spacing", "md");
   box-shadow: none;
   border: none;
 
   h2 {
-    font-size: variables.$font-size-4xl;
-    font-weight: variables.$font-weight-semibold;
-    margin-bottom: variables.$spacing-2xl;
-    color: variables.$text-primary;
+    font-size: functions.token("fontSizes", "2xl");
+    font-weight: functions.token("fontWeights", "semibold");
+    margin-bottom: functions.token("spacing", "2xl");
+    color: functions.token("colors", "text", "primary");
+
+    @include mixins.breakpoint("tablet") {
+      font-size: functions.token("fontSizes", "4xl");
+    }
   }
 }
 
 .form-section {
-  position: sticky;
-  top: 80px;
+  position: static;
+
+  @include mixins.breakpoint("laptop") {
+    position: sticky;
+    top: 80px;
+  }
 }
 
-.search-section {
-  margin-bottom: 0;
-}
-
+.search-section,
 .list-section {
   margin-bottom: 0;
 }
@@ -77,13 +85,13 @@
 // ========================================
 
 .app-error {
-  padding: variables.$spacing-md;
-  background-color: #fee;
-  color: #721c24;
-  border: 1px solid #fcc;
-  border-radius: variables.$border-radius-sm;
-  margin-bottom: variables.$spacing-4xl;
-  font-size: variables.$font-size-sm;
+  padding: functions.token("spacing", "md");
+  background-color: functions.token("colors", "error", "bg");
+  color: functions.token("colors", "error", "text");
+  border: 1px solid functions.token("colors", "error", "border");
+  border-radius: functions.token("borderRadius", "sm");
+  margin-bottom: functions.token("spacing", "4xl");
+  font-size: functions.token("fontSizes", "sm");
   @include mixins.slide-down-animation;
 }
 
@@ -108,55 +116,10 @@
 
 .app-footer {
   background: linear-gradient(135deg, #333 0%, #555 100%);
-  color: variables.$text-white;
+  color: functions.token("colors", "text", "white");
   text-align: center;
-  padding: variables.$spacing-2xl variables.$spacing-md;
+  padding: functions.token("spacing", "2xl") functions.token("spacing", "md");
   margin-top: auto;
-  font-size: variables.$font-size-sm;
-  border-top: 3px solid variables.$primary-color;
-}
-
-// ========================================
-// RESPONSIVE - MEDIUM SCREENS
-// ========================================
-
-@media (max-width: 1200px) {
-  .container {
-    grid-template-columns: 1fr;
-    gap: variables.$spacing-2xl;
-  }
-
-  .form-section,
-  .search-section,
-  .list-section {
-    grid-column: 1;
-  }
-
-  .form-section {
-    position: static;
-  }
-
-  .app-main {
-    padding: variables.$spacing-2xl variables.$spacing-md;
-  }
-}
-
-// ========================================
-// RESPONSIVE - MOBILE
-// ========================================
-
-@media (max-width: 768px) {
-  .app-main {
-    padding: variables.$spacing-md variables.$spacing-sm;
-  }
-
-  .form-section,
-  .search-section,
-  .list-section {
-    padding: variables.$spacing-md;
-
-    h2 {
-      font-size: variables.$font-size-2xl;
-    }
-  }
+  font-size: functions.token("fontSizes", "sm");
+  border-top: 3px solid functions.token("colors", "brand", "primary");
 }

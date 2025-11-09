@@ -1,8 +1,8 @@
 // Reusable component styles
 // Button variants and shared UI patterns
 
-@use "./variables";
-@use "./mixins";
+@use "functions";
+@use "mixins";
 
 // ========================================
 // BUTTON VARIANTS
@@ -23,13 +23,14 @@
 
 .btn-cancel {
   @include mixins.button-base;
-  background-color: #6c757d;
-  color: variables.$text-white;
+
+  background-color: functions.token("colors", "text", "secondary");
+  color: functions.token("colors", "text", "white");
   align-self: flex-start;
-  margin-top: variables.$spacing-md;
+  margin-top: functions.token("spacing", "md");
 
   &:hover:not(:disabled) {
-    background-color: #545b62;
+    background-color: functions.token("colors", "text", "light");
   }
 
   svg {
@@ -66,6 +67,6 @@
   height: 12px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: variables.$text-white;
+  border-top-color: functions.token("colors", "text", "white");
   @include mixins.spin-animation;
 }
