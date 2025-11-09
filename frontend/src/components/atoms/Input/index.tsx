@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import { forwardRef, useState } from "react";
 import "./index.scss";
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -9,7 +9,10 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, id, className = "", ...props }, ref) => {
     const [touched, setTouched] = useState(false);
-    const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+
+    const [inputId] = useState(
+      () => id || `input-${Math.random().toString(36).substring(2, 11)}`
+    );
 
     const showError = touched && !!error;
 

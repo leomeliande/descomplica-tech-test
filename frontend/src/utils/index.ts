@@ -1,5 +1,5 @@
 // Formatting exports
-export { formatCPF, formatCPFDisplay } from "./formatting";
+export { formatCPF, formatCPFDisplay } from "@utils/formatting";
 
 // Error handling exports
-export { getErrorMessage } from "./error";
+export { getErrorMessage } from "@utils/error";

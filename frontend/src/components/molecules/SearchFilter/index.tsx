@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Button } from "../../atoms/Button";
-import { Input } from "../../atoms/Input";
+import { useState, FormEvent } from "react";
 import { Search, X } from "lucide-react";
+
+import { Button } from "@atoms/Button";
+import { Input } from "@atoms/Input";
 import "./index.scss";
 
 interface SearchFilterProps {
@@ -9,15 +10,15 @@ interface SearchFilterProps {
   loading?: boolean;
 }
 
-export const SearchFilter: React.FC<SearchFilterProps> = ({
+export const SearchFilter = ({
   onSearch,
   loading = false,
-}) => {
+}: SearchFilterProps) => {
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSearch({
       nome: nome || undefined,

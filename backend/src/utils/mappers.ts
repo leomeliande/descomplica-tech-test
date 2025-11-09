@@ -3,8 +3,9 @@
  */
 
 import { Student } from "../types";
+import { StudentDocument } from "../database/schema";
 
-export const toStudentResponse = (doc: any): Student => {
+export const toStudentResponse = (doc: StudentDocument): Student => {
   return {
     _id: doc._id?.toString(),
     nome: doc.nome,

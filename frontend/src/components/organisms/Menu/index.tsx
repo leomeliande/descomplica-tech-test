@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Menu, X, Users, UserPlus } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+
+import { Button } from "@atoms/Button";
 import "./index.scss";
-import { Button } from "../../atoms/Button";
 
 export const HeaderMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

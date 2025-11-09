@@ -1,4 +1,4 @@
-import { Header } from "../../organisms/Header";
+import { Header } from "@organisms/Header";
 import "./index.scss";
 
 export const AppTemplate = ({ children }: { children: React.ReactNode }) => (

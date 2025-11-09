@@ -278,7 +278,7 @@ test("submits form with valid data", () => {
 
 Antes de abrir um PR, verifique:
 
-- [ ] Branch criada do `main` (ou branch pai correta)
+- [ ] Branch criada da `master` (ou branch pai correta)
 - [ ] Commits seguem Conventional Commits
 - [ ] Código testado localmente
 - [ ] Testes adicionados/atualizados
@@ -463,16 +463,15 @@ git rebase -i HEAD~3
 3. ✅ Push para seu fork
 4. ✅ Abra Pull Request com descrição clara
 5. ✅ Responda a reviews com constructividade
-6. ✅ Merge! 🎉
 
 ---
 
 ## ❓ Dúvidas?
 
 - 📖 Leia a [documentação](./README.md)
-- 🐛 Abra uma [issue](https://github.com/leome/descomplica-tech/issues)
+- 🐛 Abra uma [issue](https://github.com/leomeliande/descomplica-tech-test/issues)
 - 💬 Comente no PR
 
 ---
 
-**Obrigado por contribuir com Descomplica Tech! ❤️**
+**Obrigado por contribuir comigo! ❤️**

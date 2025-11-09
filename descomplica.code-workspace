@@ -1,0 +1,13 @@
+{
+  "folders": [{ "path": "frontend" }, { "path": "backend" }],
+  "settings": {
+    "frontend": {
+      "typescript.tsdk": "frontend/node_modules/typescript/lib",
+      "typescript.enablePromptUseWorkspaceTsdk": true
+    },
+    "backend": {
+      "typescript.tsdk": "backend/node_modules/typescript/lib",
+      "typescript.enablePromptUseWorkspaceTsdk": true
+    }
+  }
+}

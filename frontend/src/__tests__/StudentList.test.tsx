@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { MemoryRouter } from "react-router-dom";
-import { STUDENTS_QUERY } from "../graphql/queries";
-import { StudentList } from "../components/organisms/StudentList";
+
+import { STUDENTS_QUERY } from "@graphql/queries";
+import { StudentList } from "@organisms/StudentList";
 
 describe("StudentList", () => {
   it("renders empty state", () => {
