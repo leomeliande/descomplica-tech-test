@@ -1,110 +1,88 @@
 # 📚 Descomplica Flow - Sistema de Gerenciamento de Alunos
 
-API GraphQL em Node.js com TypeScript + UI em React para gerenciamento de alunos.
+[![Node.js](https://img.shields.io/badge/Node.js-20-green?logo=node.js)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18-61dafb?logo=react)](https://react.dev/)
+[![GraphQL](https://img.shields.io/badge/GraphQL-Apollo-e535ab?logo=graphql)](https://www.apollographql.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-7-13aa52?logo=mongodb)](https://www.mongodb.com/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ed?logo=docker)](https://www.docker.com/)
+[![License MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-**Desenvolvido com:** Node.js • TypeScript • GraphQL • React • MongoDB • Docker
+API GraphQL em Node.js + UI em React para gerenciamento de alunos com CRUD completo.
+
+**Tech:** Node.js • TypeScript • GraphQL • React • MongoDB • Docker • ESLint • Prettier
 
 ---
 
-## 🚀 Quick Start (30 segundos)
+## ✨ Destaques
+
+- 🚀 **Full Stack Moderno:** GraphQL API + React UI
+- 🏗️ **Arquitetura Limpa:** Atomic Design + Type-Safe
+- ✅ **Code Quality:** ESLint 9+ + Prettier + TypeScript Strict
+- 🧪 **Testes:** Jest (Backend) + Vitest (Frontend)
+- 🐳 **Containerizado:** Docker + Docker Compose
+- 📝 **Bem Documentado:** README + CONTRIBUTING
+- 💾 **CRUD Completo:** Criar, ler, filtrar, atualizar e deletar alunos
+- 🔐 **Type-Safe:** TypeScript em 100% do código
+
+---
+
+## 🚀 Quick Start
 
 ```bash
 docker-compose up --build
-
-# Abra no navegador:
-# Frontend: http://localhost:5173
-# GraphQL: http://localhost:3000/graphql
 ```
 
-**Primeira vez:** Aguarde 2-3 minutos para inicializar.
+- **Frontend:** http://localhost:5173
+- **GraphQL:** http://localhost:3000/graphql
 
 ---
 
 ## 📋 Índice
 
-1. [Arquitetura](#-arquitetura)
-2. [Instalação](#-instalação)
-3. [Como Usar](#-como-usar)
-4. [API GraphQL](#-api-graphql)
-5. [Desenvolvimento Local](#-desenvolvimento-local)
-6. [Testes](#-testes)
-7. [Commits e Contribuição](#-commits-e-contribuição)
-8. [Docker](#-docker)
+1. [Quick Start](#-quick-start)
+2. [Pré-requisitos](#-pré-requisitos)
+3. [Arquitetura](#-arquitetura)
+4. [Desenvolvimento Local](#-desenvolvimento-local)
+5. [Scripts](#-scripts)
+6. [API GraphQL](#-api-graphql)
+7. [Code Quality](#-code-quality)
+8. [Estrutura do Projeto](#-estrutura-do-projeto)
 9. [Contribuindo](#-contribuindo)
 10. [Troubleshooting](#-troubleshooting)
 
 ---
 
+## 📦 Pré-requisitos
+
+- **Node.js** 20+
+- **npm** 10+ ou **yarn**
+- **Docker** e **Docker Compose** (para containerização)
+- **MongoDB** (incluído no docker-compose)
+- **Git**
+
+**Opcional:** MongoDB instalado localmente ou qualquer gerenciador de variáveis de ambiente
+
+---
+
 ## 🏗️ Arquitetura
 
-| Componente          | Tecnologia                                     |
-| ------------------- | ---------------------------------------------- |
-| **Backend**         | Node.js + Express + TypeScript + Apollo Server |
-| **Frontend**        | React + TypeScript + Vite + Apollo Client      |
-| **Database**        | MongoDB + Mongoose                             |
-| **Containerização** | Docker + Docker Compose                        |
-| **Testes**          | Jest + Supertest (Backend) / Vitest (Frontend) |
-
----
-
-## 📦 Instalação
-
-### Pré-requisitos
-
-- **Docker Desktop** (Windows/Mac) ou Docker + Docker Compose (Linux)
-- Git
-
-### Clonar Projeto
-
-```bash
-git clone <seu-repo>
-cd descomplica-tech
-```
-
----
-
-## 🎯 Como Usar
-
-### Com Docker (Recomendado ⭐)
-
-```bash
-docker-compose up --build
-```
-
-Acesse:
-
-- **Frontend:** http://localhost:5173
-- **GraphQL Playground:** http://localhost:3000/graphql
-- **MongoDB:** localhost:27017
-
-### Parar Containers
-
-```bash
-docker-compose down
-
-# Com limpeza de dados:
-docker-compose down -v
-```
-
-### Ver Logs
-
-```bash
-docker-compose logs -f backend
-docker-compose logs -f frontend
-docker-compose logs -f mongodb
-```
+| Componente | Stack                                     |
+| ---------- | ----------------------------------------- |
+| Backend    | Node.js + Express + Apollo Server         |
+| Frontend   | React + TypeScript + Vite + Apollo Client |
+| Database   | MongoDB + Mongoose                        |
+| Quality    | ESLint 9+ + Prettier + TypeScript         |
+| Tests      | Jest (Backend) / Vitest (Frontend)        |
 
 ---
 
 ## 📊 API GraphQL
 
-### Playground
-
-Acesse: **http://localhost:3000/graphql**
-
-### Exemplo: Listar Alunos
+Acesse o Playground: **http://localhost:3000/graphql**
 
 ```graphql
+# Listar alunos
 query {
   students {
     data {
@@ -112,16 +90,12 @@ query {
       nome
       cpf
       email
-      createdAt
     }
     count
   }
 }
-```
 
-### Exemplo: Filtrar por Nome
-
-```graphql
+# Filtrar por nome
 query {
   students(nome: "João") {
     data {
@@ -133,115 +107,59 @@ query {
     count
   }
 }
-```
 
-### Filtrar por CPF
-
-```graphql
-query {
-  students(cpf: "12345678901") {
-    data {
-      _id
-      nome
-      cpf
-      email
-    }
-    count
-  }
-}
-```
-
-### Exemplo: Criar Aluno
-
-```graphql
+# Criar aluno
 mutation {
-  createStudent(
-    nome: "Maria Silva"
-    cpf: "12345678901"
-    email: "maria@example.com"
-  ) {
+  createStudent(nome: "Maria", cpf: "12345678901", email: "maria@example.com") {
     _id
     nome
-    cpf
-    email
-    createdAt
   }
 }
-```
 
-### Exemplo: Atualizar Aluno
-
-```graphql
+# Atualizar aluno
 mutation {
-  updateStudent(id: "STUDENT_ID", nome: "Maria Santos") {
+  updateStudent(id: "ID", nome: "Novo Nome") {
     _id
     nome
-    updatedAt
   }
 }
-```
 
-### Exemplo: Deletar Aluno
-
-```graphql
+# Deletar aluno
 mutation {
-  deleteStudent(id: "STUDENT_ID")
+  deleteStudent(id: "ID")
 }
-```
-
-### GraphQL com cURL
-
-```bash
-# Query
-curl -X POST http://localhost:3000/graphql \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "{ students { data { nome cpf email } count } }"
-  }'
-
-# Mutation
-curl -X POST http://localhost:3000/graphql \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "mutation { createStudent(nome: \"João\", cpf: \"12345678901\", email: \"joao@example.com\") { _id nome } }"
-  }'
 ```
 
 ---
 
 ## 💻 Desenvolvimento Local
 
-### Sem Docker - Terminal 1: MongoDB
+### 1. MongoDB
 
 ```bash
-# Opção 1: Docker
-docker run -d -p 27017:27017 --name mongodb mongo:7.0
+# Docker
+docker run -d -p 27017:27017 mongo:7.0
 
-# Opção 2: MongoDB instalado localmente
+# Ou local
 mongod
-# ou
-brew services start mongodb-community  # Mac
-sudo systemctl start mongod             # Linux
 ```
 
-### Terminal 2: Backend
+### 2. Backend
 
 ```bash
 cd backend
 npm install
 npm run dev
-
-# Roda em http://localhost:3000/graphql
+# http://localhost:3000/graphql
 ```
 
-### Terminal 3: Frontend
+### 3. Frontend
 
 ```bash
 cd frontend
 npm install
 npm run dev
-
-# Roda em http://localhost:5173
+# http://localhost:5173
 ```
 
 ### Variáveis de Ambiente
@@ -262,33 +180,66 @@ VITE_API_URL=http://localhost:3000
 
 ---
 
-## 🧪 Testes
+## 🎯 Path Aliases (Frontend)
+
+```typescript
+// ❌ Evitar
+import { Button } from "../../../atoms/Button";
+
+// ✅ Usar
+import { Button } from "@atoms/Button";
+```
+
+**Disponíveis:** `@atoms`, `@molecules`, `@organisms`, `@pages`, `@hooks`, `@graphql`, `@utils`, `@types`, `@styles`
+
+---
+
+## 🧬 Scripts
 
 ### Backend
 
 ```bash
-cd backend
-
-# Rodar testes
-npm test
-
-# Modo watch
-npm run test:watch
-
-# Com cobertura
-npm run test:coverage
+npm run dev              # Desenvolvimento
+npm run build            # Build
+npm start                # Produção
+npm test                 # Testes
+npm run lint             # Verificar código
+npm run lint:fix         # Corrigir código
+npm run format           # Formatar
 ```
 
 ### Frontend
 
 ```bash
-cd frontend
+npm run dev              # Vite dev
+npm run build            # Build produção
+npm run preview          # Visualizar
+npm test                 # Testes
+npm run lint             # ESLint
+npm run lint:fix         # Corrigir
+npm run format           # Prettier
+```
 
-# Rodar testes
-npm test
+---
 
-# Com cobertura
-npm run test:coverage
+## 🧪 Code Quality
+
+```bash
+npm run lint             # Verificar
+npm run lint:fix         # Corrigir
+npm run format           # Formatar com Prettier
+npm run format:check     # Verificar formatação
+npm run typecheck        # Verificar tipos TypeScript
+```
+
+---
+
+## 🧪 Testes
+
+```bash
+npm test                 # Rodar testes
+npm run test:coverage    # Com cobertura
+npm run test:watch       # Modo watch
 ```
 
 ---
@@ -364,77 +315,44 @@ docker-compose up --build
 
 ```
 descomplica-tech/
-├── backend/
+├── backend/                   # Node.js + Express + GraphQL
 │   ├── src/
-│   │   ├── app.ts                    # Aplicação Express + Apollo
-│   │   ├── resolvers/
-│   │   │   └── StudentResolver.ts    # GraphQL resolvers
-│   │   ├── database/
-│   │   │   ├── index.ts              # Conexão MongoDB
-│   │   │   └── schema.ts             # Mongoose schema
-│   │   ├── services/
-│   │   │   └── StudentService.ts
-│   │   └── types/
-│   │       └── index.ts
-│   ├── tests/
-│   │   └── students.test.ts
+│   │   ├── app.ts             # Apollo Server + Express
+│   │   ├── server.ts          # Server initialization
+│   │   ├── resolvers/         # GraphQL resolvers
+│   │   │   └── StudentResolver.ts
+│   │   ├── database/          # MongoDB
+│   │   │   ├── index.ts       # Connection
+│   │   │   └── schema.ts      # Mongoose schema
+│   │   ├── graphql/           # GraphQL schema
+│   │   ├── types/             # TypeScript types
+│   │   ├── constants/         # String constants
+│   │   └── utils/             # Utilities
+│   ├── tests/                 # Jest tests
 │   ├── Dockerfile
-│   ├── .env
-│   ├── package.json
-│   └── tsconfig.json
+│   └── package.json
 │
-├── frontend/
+├── frontend/                  # React + Vite
 │   ├── src/
-│   │   ├── main.tsx
-│   │   ├── App.tsx
-│   │   ├── components/
-│   │   │   ├── StudentForm.tsx
-│   │   │   ├── StudentList.tsx
-│   │   │   └── SearchFilter.tsx
-│   │   ├── graphql/
-│   │   │   ├── queries.ts            # GraphQL queries/mutations
-│   │   │   └── client.ts             # Apollo Client config
-│   │   ├── services/
-│   │   │   └── api.ts                # API calls
-│   │   └── types/
-│   │       └── index.ts
+│   │   ├── components/        # Atomic Design
+│   │   │   ├── atoms/
+│   │   │   ├── molecules/
+│   │   │   ├── organisms/
+│   │   │   ├── pages/
+│   │   │   └── templates/
+│   │   ├── graphql/           # Apollo queries/mutations
+│   │   ├── hooks/             # Custom hooks
+│   │   ├── routes/            # Rotas
+│   │   ├── types/             # TypeScript types
+│   │   ├── utils/             # Utilities
+│   │   └── styles/            # SCSS with design tokens
+│   ├── __tests__/             # Vitest tests
 │   ├── Dockerfile
-│   ├── .env
-│   ├── package.json
-│   ├── vite.config.ts
-│   └── tsconfig.json
+│   └── package.json
 │
 ├── docker-compose.yml
-├── .gitignore
-└── README.md (este arquivo)
-```
-
----
-
-## 🧬 Scripts Disponíveis
-
-### Backend
-
-```bash
-npm run dev              # Servidor em desenvolvimento (hot reload)
-npm run build            # Compilar TypeScript para dist/
-npm start                # Iniciar servidor compilado
-npm test                 # Executar testes
-npm run test:watch       # Testes em modo watch
-npm run test:coverage    # Cobertura de testes
-npm run typecheck        # Verificar tipos TypeScript
-npm run lint             # Executar ESLint
-```
-
-### Frontend
-
-```bash
-npm run dev              # Servidor Vite em desenvolvimento
-npm run build            # Build para produção (dist/)
-npm run preview          # Visualizar build localmente
-npm test                 # Executar testes
-npm run test:coverage    # Cobertura de testes
-npm run lint             # Executar ESLint
+├── CONTRIBUTING.md            # Commit guidelines
+└── README.md
 ```
 
 ---
@@ -515,34 +433,85 @@ docker exec descomplica-mongodb mongosh --eval "db.adminCommand('ping')"
 docker-compose restart mongodb
 ```
 
-### Testes falhando
+---
+
+## 🆘 Troubleshooting
+
+| Problema                | Solução                                                                  |
+| ----------------------- | ------------------------------------------------------------------------ |
+| **Porta em uso**        | `lsof -i :3000` (Mac/Linux) ou `netstat -ano \| findstr :3000` (Windows) |
+| **MongoDB não conecta** | `docker-compose logs mongodb` ou aguarde 30s                             |
+| **API não responde**    | Verifique: `curl http://localhost:3000/graphql`                          |
+| **Build falha**         | `docker-compose down -v && docker-compose up --build --no-cache`         |
+| **Testes falhando**     | `docker exec descomplica-backend npm test`                               |
+
+---
+
+## 🤝 Contribuindo
+
+Leia [CONTRIBUTING.md](./CONTRIBUTING.md) para:
+
+- ✅ Padrão de Commits (Conventional Commits)
+- ✅ Workflow de desenvolvimento
+- ✅ Pull Requests
+
+**TL;DR:**
 
 ```bash
-# Dentro do container
-docker exec descomplica-backend npm test
-
-# Ou localmente
-cd backend
-npm install
-npm test
-```
-
-### Frontend não consegue acessar API
-
-```bash
-# Verifique se GraphQL está rodando:
-curl http://localhost:3000/graphql
-
-# Verifique frontend .env
-cat frontend/.env
-
-# Restart containers
-docker-compose restart
+git checkout -b feature/sua-feature
+git commit -m "feat(frontend): descrição"
+git push origin feature/sua-feature
 ```
 
 ---
 
-## ✅ Requisitos Atendidos
+## ⚡ Performance & Boas Práticas
+
+### Backend
+
+- ✅ Apollo Server com cache automático
+- ✅ Mongoose com índices de database
+- ✅ Validação em camadas (schema + resolvers)
+- ✅ Error handling consistente
+
+### Frontend
+
+- ✅ React Router para navegação otimizada
+- ✅ Apollo Client com refetchQueries para cache
+- ✅ Atomic Design para componentes reutilizáveis
+- ✅ Path aliases para imports limpos
+- ✅ Design tokens centralizados em SCSS
+
+### DevOps
+
+- ✅ ESLint 9+ com flat config
+- ✅ Prettier com formatação automática
+- ✅ TypeScript com `strict: true`
+- ✅ Docker multi-stage build
+- ✅ Docker Compose para ambiente completo
+
+---
+
+## 📊 Cobertura de Testes
+
+| Área     | Type                           | Cobertura             |
+| -------- | ------------------------------ | --------------------- |
+| Backend  | Jest + Supertest               | Testes de resolvers   |
+| Frontend | Vitest + React Testing Library | Testes de componentes |
+| E2E      | Manual                         | GraphQL Playground    |
+
+---
+
+## 👤 Autor
+
+**Leonardo Meliande**
+
+- GitHub: [@leomeliande](https://github.com/leomeliande)
+- Projeto: Sistema de Gerenciamento de Alunos - Descomplica
+
+---
+
+## ✨ Requisitos Atendidos
 
 ### Proposta ✅
 
@@ -568,29 +537,34 @@ docker-compose restart
 
 ---
 
-## 🚀 Próximos Passos
+## 🎓 O que aprender com este projeto
 
-1. ✅ Clone o projeto
-2. 👉 **Agora:** `docker-compose up --build`
-3. 🎨 Acesse http://localhost:5173
-4. 🧪 Teste as funcionalidades
-5. 📝 Explore http://localhost:3000/graphql
-6. 💾 Faça seus commits com padrão `feat:`, `fix:`, etc.
+1. **Backend TypeScript/GraphQL**
 
----
+   - Apollo Server setup e resolvers
+   - MongoDB + Mongoose schema design
+   - Validações e error handling
+   - Testes com Jest
 
-## 📞 Suporte
+2. **Frontend React/TypeScript**
 
-- Ver logs em tempo real: `docker-compose logs -f`
-- Testar GraphQL: http://localhost:3000/graphql
-- Verificar containers: `docker ps`
-- Reset completo: `docker-compose down -v && docker-compose up --build`
+   - React Router para SPA
+   - Apollo Client para GraphQL
+   - Atomic Design pattern
+   - Custom hooks reutilizáveis
+   - Testes com Vitest
 
----
+3. **DevOps & Quality**
 
-## 📄 Licença
+   - Containerização com Docker
+   - Setup com ESLint + Prettier
+   - TypeScript strict mode
+   - Git workflow com Conventional Commits
 
-MIT
+4. **Soft Skills**
+   - Organização de código
+   - Documentação
+   - Boas práticas
 
 ---
 
