@@ -132,42 +132,48 @@ pre {
 table {
   width: 100%;
   border-collapse: collapse;
-  @include mixins.card-base;
+  background-color: functions.token("colors", "background", "white");
+  box-shadow: functions.token("shadows", "sm");
+  border-radius: functions.token("borderRadius", "md");
   overflow: hidden;
+  border: 1px solid #f0f0f0;
 }
 
 thead {
-  background-color: functions.token("colors", "background", "secondary");
+  background-color: #fafafa;
   color: functions.token("colors", "text", "primary");
-  border-bottom: functions.token("borders", "width")
-    functions.token("borders", "style")
-    functions.token("colors", "border", "default");
+  border-bottom: 1px solid #e0e0e0;
 }
 
 th {
-  padding: functions.token("spacing", "lg");
+  padding: functions.token("spacing", "lg") functions.token("spacing", "md");
   text-align: left;
   font-weight: functions.token("fontWeights", "semibold");
   font-size: functions.token("fontSizes", "xs");
+  letter-spacing: 0.5px;
+
   @include mixins.text-uppercase;
 }
 
+tr {
+  border-bottom: 1px solid functions.token("colors", "border", "light");
+}
+
 td {
-  padding: functions.token("spacing", "lg");
-  border-bottom: functions.token("borders", "width")
-    functions.token("borders", "style")
-    functions.token("colors", "border", "light");
-  font-size: functions.token("fontSizes", "base");
+  padding: functions.token("spacing", "lg") functions.token("spacing", "md");
+  font-size: functions.token("fontSizes", "sm");
   color: functions.token("colors", "text", "primary");
 }
 
 tbody {
-  tr:hover {
-    background-color: functions.token("colors", "background", "secondary");
-  }
+  tr {
+    &:hover {
+      background-color: #fafafa;
+    }
 
-  tr:last-child td {
-    border-bottom: none;
+    &:last-child td {
+      border-bottom: none;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, X, Users, UserPlus } from "lucide-react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./index.scss";
 import { Button } from "../../atoms/Button";
 
@@ -37,11 +37,11 @@ export const HeaderMenu = () => {
 
         <Button
           onClick={() => handleNavigation("/novo")}
-          variant="primary"
+          variant="secondary"
           disabled={location.pathname === "/novo"}
         >
           <UserPlus size={18} />
-          Novo Aluno
+          Novo aluno
         </Button>
       </nav>
 

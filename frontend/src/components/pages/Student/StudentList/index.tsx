@@ -11,7 +11,6 @@ export const StudentListPage = () => {
     loading,
     error,
     loadStudents,
-    startEditing,
     deleteStudent,
     applyFilters,
     clearError,
@@ -56,7 +55,6 @@ export const StudentListPage = () => {
         <StudentList
           students={students}
           onDelete={deleteStudent}
-          onEdit={startEditing}
           loading={loading}
         />
       </section>

@@ -8,57 +8,7 @@
 // ========================================
 
 .student-list {
-  width: 100%;
-  margin-top: 0;
-}
-
-// ========================================
-// TABLE STYLES
-// ========================================
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: functions.token("colors", "background", "white");
-  box-shadow: functions.token("shadows", "sm");
-  border-radius: functions.token("borderRadius", "md");
-  overflow: hidden;
-  border: 1px solid #f0f0f0;
-}
-
-thead {
-  background-color: #fafafa;
-  color: functions.token("colors", "text", "primary");
-  border-bottom: 1px solid #e0e0e0;
-}
-
-th {
-  padding: functions.token("spacing", "4xl") functions.token("spacing", "md");
-  text-align: left;
-  font-weight: functions.token("fontWeights", "semibold");
-  font-size: functions.token("fontSizes", "xs");
-  letter-spacing: 0.5px;
-
-  @include mixins.text-uppercase;
-}
-
-td {
-  padding: functions.token("spacing", "4xl") functions.token("spacing", "md");
-  border-bottom: 1px solid #f5f5f5;
-  font-size: functions.token("fontSizes", "sm");
-  color: functions.token("colors", "text", "primary");
-}
-
-tbody {
-  tr {
-    &:hover {
-      background-color: #fafafa;
-    }
-
-    &:last-child td {
-      border-bottom: none;
-    }
-  }
+  overflow-x: auto;
 }
 
 // ========================================
