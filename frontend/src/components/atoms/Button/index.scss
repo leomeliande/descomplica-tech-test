@@ -1,0 +1,45 @@
+.btn {
+  @include mixins.button-base;
+
+  &-primary {
+    @include mixins.button-primary;
+  }
+
+  &-secondary {
+    @include mixins.button-secondary;
+  }
+
+  &-danger {
+    @include mixins.button-danger;
+  }
+
+  &-cancel {
+    @include mixins.button-base;
+
+    background-color: functions.token("colors", "text", "secondary");
+    color: functions.token("colors", "text", "white");
+    align-self: flex-start;
+    margin-top: functions.token("spacing", "md");
+
+    &:hover:not(:disabled) {
+      background-color: functions.token("colors", "text", "light");
+    }
+  }
+
+  span {
+    @include mixins.flex(row, flex-start, center);
+
+    gap: functions.token("spacing", "sm");
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: functions.token("colors", "text", "white");
+
+  @include mixins.spin-animation;
+}

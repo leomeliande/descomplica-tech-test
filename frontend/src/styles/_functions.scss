@@ -1,0 +1,36 @@
+@use "tokens";
+@use "sass:map";
+
+@function token($type, $keys...) {
+  $maps: (
+    colors: tokens.$colors,
+    spacing: tokens.$spacing,
+    fonts: tokens.$fonts,
+    fontSizes: tokens.$font-sizes,
+    fontWeights: tokens.$font-weights,
+    lineHeights: tokens.$line-heights,
+    shadows: tokens.$shadows,
+    borders: tokens.$border,
+    borderRadius: tokens.$border-radius,
+    zLayers: tokens.$z-layers,
+    durations: tokens.$durations,
+    easings: tokens.$easings,
+    breakpoints: tokens.$breakpoints,
+  );
+
+  $map: map.get($maps, $type);
+
+  @if $map == null {
+    @error "Tipo `#{$type}` não existe nos tokens.";
+  }
+
+  @each $key in $keys {
+    $map: map.get($map, $key);
+
+    @if $map == null {
+      @error "Chave `#{$key}` não encontrada em `#{$type}`.";
+    }
+  }
+
+  @return $map;
+}

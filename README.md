@@ -1,4 +1,4 @@
-# 📚 Sistema de Gerenciamento de Alunos - Descomplica Tech
+# 📚 Descomplica Flow - Sistema de Gerenciamento de Alunos
 
 API GraphQL em Node.js com TypeScript + UI em React para gerenciamento de alunos.
 

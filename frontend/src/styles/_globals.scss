@@ -1,0 +1,190 @@
+/**
+ * Global Styles & Reset
+ * Base styles, typography, and root configuration
+ */
+
+@use "functions";
+@use "mixins";
+
+// ========================================
+// RESET & BASE
+// ========================================
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: functions.token("fonts", "base");
+  font-size: functions.token("fontSizes", "base");
+  line-height: functions.token("lineHeights", "normal");
+  color: functions.token("colors", "text", "primary");
+  background-color: functions.token("colors", "background", "primary");
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ========================================
+// TYPOGRAPHY
+// ========================================
+
+h1 {
+  font-size: functions.token("fontSizes", "4xl");
+  font-weight: functions.token("fontWeights", "bold");
+  line-height: functions.token("lineHeights", "tight");
+}
+
+h2 {
+  font-size: functions.token("fontSizes", "2xl");
+  font-weight: functions.token("fontWeights", "semibold");
+  line-height: functions.token("lineHeights", "tight");
+  margin-bottom: functions.token("spacing", "2xl");
+}
+
+h3 {
+  font-size: functions.token("fontSizes", "xl");
+  font-weight: functions.token("fontWeights", "semibold");
+}
+
+h4 {
+  font-size: functions.token("fontSizes", "lg");
+  font-weight: functions.token("fontWeights", "semibold");
+}
+
+h5,
+h6 {
+  font-size: functions.token("fontSizes", "md");
+  font-weight: functions.token("fontWeights", "semibold");
+}
+
+p {
+  margin-bottom: functions.token("spacing", "md");
+}
+
+small {
+  font-size: functions.token("fontSizes", "xs");
+  color: functions.token("colors", "text", "secondary");
+}
+
+// ========================================
+// LINKS
+// ========================================
+
+a {
+  color: functions.token("colors", "brand", "primary");
+  text-decoration: none;
+  transition: color functions.token("durations", "fast");
+
+  &:hover {
+    color: functions.token("colors", "brand", "primary-dark");
+  }
+
+  &:focus-visible {
+    @include mixins.focus-ring;
+  }
+}
+
+// ========================================
+// LISTS
+// ========================================
+
+ul,
+ol {
+  margin-left: functions.token("spacing", "lg");
+  margin-bottom: functions.token("spacing", "md");
+
+  li {
+    margin-bottom: functions.token("spacing", "sm");
+  }
+}
+
+// ========================================
+// CODE
+// ========================================
+
+code,
+pre {
+  font-family: "Courier New", monospace;
+  background-color: functions.token("colors", "background", "secondary");
+  padding: functions.token("spacing", "xs") functions.token("spacing", "sm");
+  border-radius: functions.token("borderRadius", "sm");
+  font-size: functions.token("fontSizes", "sm");
+}
+
+pre {
+  padding: functions.token("spacing", "lg");
+  overflow-x: auto;
+}
+
+// ========================================
+// TABLES
+// ========================================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: functions.token("colors", "background", "white");
+  box-shadow: functions.token("shadows", "sm");
+  border-radius: functions.token("borderRadius", "md");
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+}
+
+thead {
+  background-color: #fafafa;
+  color: functions.token("colors", "text", "primary");
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  padding: functions.token("spacing", "lg") functions.token("spacing", "md");
+  text-align: left;
+  font-weight: functions.token("fontWeights", "semibold");
+  font-size: functions.token("fontSizes", "xs");
+  letter-spacing: 0.5px;
+
+  @include mixins.text-uppercase;
+}
+
+tr {
+  border-bottom: 1px solid functions.token("colors", "border", "light");
+}
+
+td {
+  padding: functions.token("spacing", "lg") functions.token("spacing", "md");
+  font-size: functions.token("fontSizes", "sm");
+  color: functions.token("colors", "text", "primary");
+}
+
+tbody {
+  tr {
+    &:hover {
+      background-color: #fafafa;
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+// ========================================
+// ROOT VARIABLES
+// ========================================
+
+:root {
+  --primary-color: #{functions.token("colors", "brand", "primary")};
+  --primary-hover: #{functions.token("colors", "brand", "primary-dark")};
+  --primary-focus: #{functions.token("colors", "brand", "primary-light")};
+  --text-primary: #{functions.token("colors", "text", "primary")};
+  --bg-primary: #{functions.token("colors", "background", "primary")};
+}

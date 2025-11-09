@@ -1,0 +1,39 @@
+/**
+ * StudentList Component Styles
+ * Table display for listing students with edit/delete actions
+ */
+
+// ========================================
+// LIST CONTAINER
+// ========================================
+
+.student-list {
+  overflow-x: auto;
+}
+
+// ========================================
+// ACTIONS COLUMN
+// ========================================
+
+.actions {
+  display: flex;
+  gap: functions.token("spacing", "sm");
+}
+
+// ========================================
+// EMPTY STATE
+// ========================================
+
+.empty-state {
+  text-align: center;
+  padding: functions.token("spacing", "2xl") functions.token("spacing", "md");
+  background-color: #f9f9f9;
+  border-radius: functions.token("borderRadius", "md");
+
+  p {
+    font-size: functions.token("fontSizes", "base");
+    color: functions.token("colors", "text", "secondary");
+    font-weight: functions.token("fontWeights", "medium");
+    margin: 0;
+  }
+}
