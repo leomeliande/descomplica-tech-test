@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { SearchFilter } from "../components/molecules/SearchFilter";
+
+import { SearchFilter } from "@molecules/SearchFilter";
 
 describe("SearchFilter", () => {
   it("calls onSearch with filters", () => {

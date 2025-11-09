@@ -1,19 +1,28 @@
-import { StudentModel } from "../database/schema";
+import { FilterQuery } from "mongoose";
+import { StudentModel, StudentDocument } from "../database/schema";
 import { validateCPF } from "../utils/validation";
 import { toStudentResponse } from "../utils/mappers";
 import { ERROR_MESSAGES } from "../constants/errors";
+import {
+  CreateStudentArgs,
+  UpdateStudentArgs,
+  DeleteStudentArgs,
+  StudentFilter,
+  Student,
+  StudentListResponse,
+} from "../types";
 
 export const studentResolvers = {
-  students: async (args: any) => {
+  students: async (args: StudentFilter): Promise<StudentListResponse> => {
     try {
-      const query: Record<string, any> = {};
+      const query: FilterQuery<StudentDocument> = {};
 
-      if (args?.nome) query.nome = { $regex: args.nome, $options: "i" };
-      if (args?.cpf) query.cpf = args.cpf;
-      if (args?.email) query.email = args.email;
+      if (args.nome) query.nome = { $regex: args.nome, $options: "i" };
+      if (args.cpf) query.cpf = args.cpf;
+      if (args.email) query.email = args.email;
 
       const students = await StudentModel.find(query).sort({ createdAt: -1 });
-      const data = students.map(toStudentResponse);
+      const data: Student[] = students.map(toStudentResponse);
 
       return {
         data,
@@ -25,9 +34,9 @@ export const studentResolvers = {
     }
   },
 
-  student: async (args: any) => {
+  student: async (args: { id: string }): Promise<Student | null> => {
     try {
-      const student = await StudentModel.findById(args?.id);
+      const student = await StudentModel.findById(args.id);
       if (!student) return null;
       return toStudentResponse(student);
     } catch (error) {
@@ -36,7 +45,7 @@ export const studentResolvers = {
     }
   },
 
-  createStudent: async (args: any) => {
+  createStudent: async (args: CreateStudentArgs): Promise<Student> => {
     try {
       if (!validateCPF(args.cpf)) {
         throw new Error(ERROR_MESSAGES.INVALID_CPF);
@@ -51,31 +60,34 @@ export const studentResolvers = {
 
       await newStudent.save();
       return toStudentResponse(newStudent);
-    } catch (error: any) {
-      if (error.name === "ValidationError") {
-        const firstError = Object.values(error.errors)[0] as any;
-        const message = firstError?.message || error.message;
-        throw new Error(message);
+    } catch (error: unknown) {
+      if (
+        error instanceof Error &&
+        "name" in error &&
+        (error as any).name === "ValidationError"
+      ) {
+        const firstError = Object.values((error as any).errors)[0] as {
+          message: string;
+        };
+        throw new Error(firstError?.message || error.message);
       }
-
       throw error;
     }
   },
 
-  updateStudent: async (args: any) => {
+  updateStudent: async (args: UpdateStudentArgs): Promise<Student | null> => {
     try {
-      const existingStudent = await StudentModel.findById(args?.id);
+      const existingStudent = await StudentModel.findById(args.id);
       if (!existingStudent) throw new Error(ERROR_MESSAGES.STUDENT_NOT_FOUND);
 
-      if (args?.cpf && !validateCPF(args.cpf)) {
+      if (args.cpf && !validateCPF(args.cpf)) {
         throw new Error(ERROR_MESSAGES.INVALID_CPF);
       }
 
-      const updateData: Record<string, any> = {};
-
-      if (args?.nome) updateData.nome = args.nome;
-      if (args?.cpf) updateData.cpf = args.cpf.replace(/\D/g, "");
-      if (args?.email) updateData.email = args.email;
+      const updateData: Partial<Student> = {};
+      if (args.nome) updateData.nome = args.nome;
+      if (args.cpf) updateData.cpf = args.cpf.replace(/\D/g, "");
+      if (args.email) updateData.email = args.email;
 
       const updatedStudent = await StudentModel.findByIdAndUpdate(
         args.id,
@@ -85,20 +97,24 @@ export const studentResolvers = {
 
       if (!updatedStudent) return null;
       return toStudentResponse(updatedStudent);
-    } catch (error: any) {
-      if (error.name === "ValidationError") {
-        const firstError = Object.values(error.errors)[0] as any;
-        const message = firstError?.message || error.message;
-        throw new Error(message);
+    } catch (error: unknown) {
+      if (
+        error instanceof Error &&
+        "name" in error &&
+        (error as any).name === "ValidationError"
+      ) {
+        const firstError = Object.values((error as any).errors)[0] as {
+          message: string;
+        };
+        throw new Error(firstError?.message || error.message);
       }
-
       throw error;
     }
   },
 
-  deleteStudent: async (args: any) => {
+  deleteStudent: async (args: DeleteStudentArgs): Promise<boolean> => {
     try {
-      const result = await StudentModel.findByIdAndDelete(args?.id);
+      const result = await StudentModel.findByIdAndDelete(args.id);
       return !!result;
     } catch (error) {
       console.error("Error deleting student:", error);

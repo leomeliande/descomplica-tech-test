@@ -1,8 +1,8 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { StudentListPage } from "../components/pages/Student/StudentList";
-import { StudentNewPage } from "../components/pages/Student/New";
-import { StudentEditPage } from "../components/pages/Student/Edit";
+
+import { StudentListPage } from "@pages/Student/StudentList";
+import { StudentNewPage } from "@pages/Student/New";
+import { StudentEditPage } from "@pages/Student/Edit";
 
 function NotFound() {
   return (
@@ -12,7 +12,7 @@ function NotFound() {
   );
 }
 
-export const AppRoutes: React.FC = () => {
+export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<StudentListPage />} />

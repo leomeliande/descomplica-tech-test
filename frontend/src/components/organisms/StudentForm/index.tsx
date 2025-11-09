@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { Button } from "../../atoms/Button";
-import { Input } from "../../atoms/Input";
-import { Save, AlertCircle } from "lucide-react";
-import { Student } from "../../../types";
-import { formatCPF } from "../../../utils";
+import { useState, FormEvent, ChangeEvent } from "react";
+import { Save } from "lucide-react";
+
+import { Button } from "@atoms/Button";
+import { Input } from "@atoms/Input";
+import { Student } from "@/types";
+import { formatCPF } from "@/utils";
 import "./index.scss";
 
 interface StudentFormProps {
@@ -11,43 +12,31 @@ interface StudentFormProps {
     student: Omit<Student, "_id" | "id" | "createdAt" | "updatedAt">
   ) => Promise<void>;
   loading?: boolean;
-  error?: string;
   initialData?: Student;
   mode?: "create" | "edit";
 }
 
-export const StudentForm: React.FC<StudentFormProps> = ({
+export const StudentForm = ({
   onSubmit,
   loading = false,
-  error = "",
   initialData,
   mode = "create",
-}) => {
+}: StudentFormProps) => {
   const [nome, setNome] = useState(initialData?.nome || "");
   const [cpf, setCpf] = useState(initialData?.cpf || "");
   const [email, setEmail] = useState(initialData?.email || "");
-  const [localError, setLocalError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setLocalError("");
+    await onSubmit({ nome, cpf, email });
 
-    try {
-      await onSubmit({ nome, cpf, email });
-
-      setNome("");
-      setCpf("");
-      setEmail("");
-    } catch (err) {
-      const errorMsg =
-        err instanceof Error ? err.message : "Erro ao salvar aluno";
-
-      setLocalError(errorMsg);
-    }
+    setNome("");
+    setCpf("");
+    setEmail("");
   };
 
-  const handleCPFChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCPFChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCpf(e.target.value.replace(/\D/g, ""));
   };
 

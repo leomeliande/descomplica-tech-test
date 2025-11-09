@@ -1,7 +1,9 @@
-import { useStudents, useToast } from "../../../../hooks";
-import { StudentList } from "../../../organisms/StudentList";
-import { SearchFilter } from "../../../molecules/SearchFilter";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect } from "react";
+
+import { useStudents, useToast } from "@hooks/index";
+import { StudentList } from "@organisms/StudentList";
+import { SearchFilter } from "@molecules/SearchFilter";
+import { Filters } from "@/types";
 
 import "./index.scss";
 
@@ -20,15 +22,15 @@ export const StudentListPage = () => {
     loadStudents();
   }, [loadStudents]);
 
-  const handleToastClose = () => {
+  const handleToastClose = useCallback(() => {
     clearError();
-  };
+  }, [clearError]);
 
   const { showToast } = useToast();
 
   useEffect(() => {
     if (error) showToast(error, "error", handleToastClose);
-  }, [error]);
+  }, [error, showToast, handleToastClose]);
 
   return (
     <div className="app-container">
@@ -36,7 +38,7 @@ export const StudentListPage = () => {
         <h2>Filtrar:</h2>
 
         <SearchFilter
-          onSearch={(filters: any) => {
+          onSearch={(filters: Filters) => {
             applyFilters(filters);
             loadStudents(filters);
           }}

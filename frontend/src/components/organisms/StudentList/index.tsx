@@ -1,9 +1,11 @@
-import React from "react";
-import { Button } from "../../atoms/Button";
+import { useState } from "react";
 import { Pencil, Trash2 } from "lucide-react";
-import { Student } from "../../../types";
-import { formatCPFDisplay } from "../../../utils";
 import { useNavigate } from "react-router-dom";
+
+import { Button } from "@atoms/Button";
+import { Student } from "@/types";
+import { formatCPFDisplay } from "@/utils";
+
 import "./index.scss";
 
 interface StudentListProps {
@@ -12,12 +14,12 @@ interface StudentListProps {
   loading?: boolean;
 }
 
-export const StudentList: React.FC<StudentListProps> = ({
+export const StudentList = ({
   students,
   onDelete,
   loading = false,
-}) => {
-  const [deleteLoading, setDeleteLoading] = React.useState<string | null>(null);
+}: StudentListProps) => {
+  const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleDelete = async (id: string) => {

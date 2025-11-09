@@ -13,7 +13,22 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "moduleResolution": "bundler",
-    "types": ["vite/client", "vitest/globals"]
+    "types": ["vite/client", "vitest/globals"],
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./*"],
+      "@components/*": ["components/*"],
+      "@atoms/*": ["components/atoms/*"],
+      "@molecules/*": ["components/molecules/*"],
+      "@organisms/*": ["components/organisms/*"],
+      "@templates/*": ["components/templates/*"],
+      "@pages/*": ["components/pages/*"],
+      "@hooks/*": ["hooks/*"],
+      "@graphql/*": ["graphql/*"],
+      "@types/*": ["types/*"],
+      "@utils/*": ["utils/*"],
+      "@styles/*": ["styles/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

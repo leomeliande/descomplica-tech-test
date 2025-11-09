@@ -1,5 +1,12 @@
-import React from "react";
-import { Toast, ToastType } from "../components/atoms/Toast";
+import {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  ReactElement,
+} from "react";
+
+import { Toast, ToastType } from "@atoms/Toast";
 
 interface ToastState {
   message: string;
@@ -7,21 +14,21 @@ interface ToastState {
   visible: boolean;
 }
 
-const ToastContext = React.createContext<{
+const ToastContext = createContext<{
   showToast: (message: string, type?: ToastType, onClose?: () => void) => void;
 } | null>(null);
 
 export const ToastProvider = ({
   children,
 }: {
-  children: React.ReactNode;
-}): React.ReactElement | null => {
-  const [toast, setToast] = React.useState<ToastState>({
+  children: ReactNode;
+}): ReactElement | null => {
+  const [toast, setToast] = useState<ToastState>({
     message: "",
     type: "success",
     visible: false,
   });
-  const [externalOnClose, setExternalOnClose] = React.useState<
+  const [externalOnClose, setExternalOnClose] = useState<
     (() => void) | undefined
   >(undefined);
 
@@ -54,7 +61,7 @@ export const ToastProvider = ({
 };
 
 export const useToast = () => {
-  const ctx = React.useContext(ToastContext);
+  const ctx = useContext(ToastContext);
 
   if (!ctx) throw new Error("useToast must be used within ToastProvider");
 

@@ -126,16 +126,17 @@ npm run test:watch         # Testes em modo watch
 
 ## 📊 Scripts Disponíveis
 
-| Comando                 | Descrição                      |
-| ----------------------- | ------------------------------ |
-| `npm run dev`           | Desenvolvimento com hot-reload |
-| `npm run build`         | Compilar TypeScript            |
-| `npm start`             | Servidor de produção           |
-| `npm test`              | Executar testes                |
-| `npm run test:watch`    | Testes em modo watch           |
-| `npm run test:coverage` | Testes com cobertura           |
-| `npm run typecheck`     | Verificar tipos                |
-| `npm run lint`          | Executar ESLint                |
+| Comando                 | Descrição                       |
+| ----------------------- | ------------------------------- |
+| `npm run dev`           | Desenvolvimento com hot-reload  |
+| `npm run build`         | Compilar TypeScript             |
+| `npm start`             | Servidor de produção            |
+| `npm test`              | Executar testes                 |
+| `npm run test:watch`    | Testes em modo watch            |
+| `npm run test:coverage` | Testes com cobertura            |
+| `npm run typecheck`     | Verificar tipos                 |
+| `npm run lint`          | Executar ESLint                 |
+| `npm run lint:fix`      | Corrigir issues automaticamente |
 
 ## 🌐 Variáveis de Ambiente
 

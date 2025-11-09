@@ -1,7 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
-import { CREATE_STUDENT_MUTATION } from "../graphql/queries";
-import { StudentForm } from "../components/organisms/StudentForm";
+
+import { CREATE_STUDENT_MUTATION } from "@graphql/queries";
+import { StudentForm } from "@organisms/StudentForm";
 
 describe("StudentForm", () => {
   it("submits new student", async () => {
