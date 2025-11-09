@@ -1,7 +1,8 @@
-import { StudentForm } from "../../organisms/StudentForm";
-import { useStudents, useToast } from "../../../hooks";
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+
+import { StudentForm } from "@organisms/StudentForm";
+import { useStudents, useToast } from "@hooks/index";
 
 export const StudentEditPage = () => {
   const navigate = useNavigate();
@@ -11,9 +12,9 @@ export const StudentEditPage = () => {
     useStudents();
   const { showToast } = useToast();
 
-  const handleToastClose = () => {
+  const handleToastClose = useCallback(() => {
     clearError();
-  };
+  }, [clearError]);
 
   useEffect(() => {
     loadStudents();
@@ -21,7 +22,7 @@ export const StudentEditPage = () => {
 
   useEffect(() => {
     if (error) showToast(error, "error", handleToastClose);
-  }, [error]);
+  }, [error, showToast, handleToastClose]);
 
   const student = students.find((s) => s._id === id);
 

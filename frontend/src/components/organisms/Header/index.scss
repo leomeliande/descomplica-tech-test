@@ -27,8 +27,7 @@
   @include mixins.flex(
     row,
     flex-start,
-    center,
-    //functions.token("spacing", "xs")
+    center //functions.token("spacing", "xs")
   );
 
   background-color: functions.token("colors", "background", "white");
