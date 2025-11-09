@@ -3,7 +3,6 @@ export const getErrorMessage = (
   defaultMsg: string = "Erro na operação"
 ): string => {
   let message = "";
-
   if (err instanceof Error) {
     message = err.message;
   } else if (typeof err === "string") {

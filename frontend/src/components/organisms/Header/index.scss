@@ -24,11 +24,7 @@
 // ========================================
 
 .header-logo {
-  @include mixins.flex(
-    row,
-    flex-start,
-    center //functions.token("spacing", "xs")
-  );
+  @include mixins.flex(row, flex-start, center);
 
   background-color: functions.token("colors", "background", "white");
   border-radius: functions.token("borderRadius", "lg");
