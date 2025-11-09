@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Menu, X, Users, UserPlus } from "lucide-react";
-import { useAppView } from "../../contexts/AppViewContext";
+import { useAppView } from "../../../contexts/AppViewContext";
 import "./index.scss";
+import { Button } from "../../atoms/Button";
 
 export const HeaderMenu = () => {
   const { setView } = useAppView();
@@ -14,28 +15,27 @@ export const HeaderMenu = () => {
 
   return (
     <>
-      {/* Hamburger Menu */}
-      <button
+      <Button
         className="hamburger"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
+        variant="secondary"
       >
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      </Button>
 
-      {/* Mobile Menu */}
       <nav className={`header-menu ${isMenuOpen ? "open" : ""}`}>
-        <button onClick={() => handleNavigation("list")} className="menu-item">
+        <Button onClick={() => handleNavigation("list")} variant="secondary">
           <Users size={18} />
           Alunos
-        </button>
-        <button onClick={() => handleNavigation("add")} className="menu-item">
+        </Button>
+
+        <Button onClick={() => handleNavigation("add")} variant="primary">
           <UserPlus size={18} />
           Novo Aluno
-        </button>
+        </Button>
       </nav>
 
-      {/* Overlay */}
       {isMenuOpen && (
         <div
           className="menu-overlay"

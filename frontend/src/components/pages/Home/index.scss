@@ -1,0 +1,39 @@
+@use "sass:map";
+
+// ========================================
+// APP LAYOUT
+// ========================================
+
+.app {
+  @include mixins.flex(column);
+
+  min-height: 100vh;
+}
+
+// ========================================
+// MAIN CONTENT AREA
+// ========================================
+
+.app-main {
+  padding: functions.token("spacing", "md") functions.token("spacing", "sm");
+
+  @include mixins.flex(row, center, center);
+
+  @include mixins.breakpoint("tablet") {
+    padding: functions.token("spacing", "2xl") functions.token("spacing", "md");
+  }
+}
+
+// ========================================
+// FOOTER
+// ========================================
+
+.app-footer {
+  background: linear-gradient(135deg, #333 0%, #555 100%);
+  color: functions.token("colors", "text", "white");
+  text-align: center;
+  padding: functions.token("spacing", "2xl") functions.token("spacing", "md");
+  margin-top: auto;
+  font-size: functions.token("fontSizes", "sm");
+  border-top: 3px solid functions.token("colors", "brand", "primary");
+}

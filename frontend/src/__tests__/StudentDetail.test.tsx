@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { STUDENT_QUERY } from "../graphql/queries";
-import { StudentList } from "../components/StudentList";
+import { StudentList } from "../components/organisms/StudentList";
 
 describe("StudentDetail", () => {
   it("renders student detail from query", async () => {

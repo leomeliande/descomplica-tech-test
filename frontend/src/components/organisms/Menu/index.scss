@@ -1,13 +1,9 @@
-@use "../../styles/functions";
-@use "../../styles/mixins";
-
 // ========================================
 // HAMBURGER BUTTON
 // ========================================
 
 .hamburger {
-  display: flex;
-  @include mixins.flex-center;
+  @include mixins.flex(row, center, center);
   background: none;
   border: none;
   cursor: pointer;
@@ -16,6 +12,8 @@
   transition: all functions.token("durations", "normal")
     functions.token("easings", "cubic");
   color: functions.token("colors", "text", "white");
+  position: relative;
+  z-index: functions.token("zLayers", "header") + 1;
 
   svg {
     width: 24px;
@@ -29,6 +27,7 @@
 
   @include mixins.breakpoint("tablet") {
     display: none;
+    z-index: auto;
   }
 }
 
@@ -37,7 +36,8 @@
 // ========================================
 
 .header-menu {
-  @include mixins.flex-column;
+  @include mixins.flex(column);
+
   position: fixed;
   top: 0;
   right: 0;
@@ -52,7 +52,7 @@
   box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
   padding: 80px functions.token("spacing", "md")
     functions.token("spacing", "md");
-  gap: functions.token("spacing", "xs");
+  gap: functions.token("spacing", "md");
   transform: translateX(100%);
   transition: transform 0.35s functions.token("easings", "cubic");
   z-index: functions.token("zLayers", "modal");
@@ -64,7 +64,6 @@
 
   @include mixins.breakpoint("tablet") {
     position: static;
-    display: flex !important;
     flex-direction: row;
     width: auto;
     height: auto;
@@ -75,49 +74,6 @@
     transform: none !important;
     z-index: auto;
     overflow: visible;
-  }
-}
-
-// ========================================
-// MENU ITEM
-// ========================================
-
-.menu-item {
-  @include mixins.flex-center;
-  gap: functions.token("spacing", "xs");
-  width: 100%;
-  justify-content: flex-start;
-  background-color: rgba(255, 255, 255, 0.15);
-  color: functions.token("colors", "text", "white");
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: functions.token("spacing", "sm") functions.token("spacing", "md");
-  border-radius: functions.token("borderRadius", "md");
-  font-size: functions.token("fontSizes", "base");
-  font-weight: functions.token("fontWeights", "semibold");
-  cursor: pointer;
-  text-align: left;
-  transition: all functions.token("durations", "fast")
-    functions.token("easings", "cubic");
-  backdrop-filter: blur(10px);
-
-  &:hover,
-  &:active {
-    background-color: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateX(4px);
-  }
-
-  @include mixins.breakpoint("tablet") {
-    width: auto;
-    justify-content: center;
-    padding: functions.token("spacing", "xs") functions.token("spacing", "lg");
-    border-radius: functions.token("borderRadius", "sm");
-    font-size: functions.token("fontSizes", "sm");
-    text-align: center;
-
-    &:hover {
-      transform: translateY(-2px);
-    }
   }
 }
 
@@ -134,22 +90,10 @@
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
   z-index: functions.token("zLayers", "modal") - 1;
+
   @include mixins.fade-in-animation;
 
   @include mixins.breakpoint("tablet") {
     display: none;
-  }
-}
-
-// ========================================
-// KEYFRAMES
-// ========================================
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

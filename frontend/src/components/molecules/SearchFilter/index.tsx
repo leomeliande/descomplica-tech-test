@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Button } from "../../atoms/Button";
+import { Input } from "../../atoms/Input";
 import { Search, X } from "lucide-react";
 import "./index.scss";
 
@@ -34,18 +36,18 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
   return (
     <form onSubmit={handleSearch} className="search-filter">
       <div className="filter-group">
-        <input
+        <Input
+          id="nome"
           type="text"
-          name="nome"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
           placeholder="Filtrar por nome..."
           disabled={loading}
         />
 
-        <input
+        <Input
+          id="cpf"
           type="text"
-          name="cpf"
           value={cpf}
           onChange={(e) => setCpf(e.target.value.replace(/\D/g, ""))}
           placeholder="Filtrar por CPF..."
@@ -53,38 +55,31 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
           disabled={loading}
         />
 
-        <input
+        <Input
+          id="email"
           type="email"
-          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Filtrar por email..."
           disabled={loading}
         />
+      </div>
 
-        <button type="submit" disabled={loading} className="btn-search">
-          {loading ? (
-            <>
-              <span className="spinner"></span>
-              Buscando...
-            </>
-          ) : (
-            <>
-              <Search size={16} />
-              Buscar
-            </>
-          )}
-        </button>
+      <div className="button-group">
+        <Button type="submit" loading={loading} variant="primary">
+          <Search size={16} />
+          Buscar
+        </Button>
 
-        <button
-          type="button"
+        <Button
+          type="reset"
           onClick={handleClear}
           disabled={loading || (!nome && !cpf && !email)}
-          className="btn-clear"
+          variant="secondary"
         >
           <X size={16} />
           Limpar
-        </button>
+        </Button>
       </div>
     </form>
   );

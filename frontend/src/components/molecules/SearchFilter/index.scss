@@ -1,0 +1,63 @@
+// ========================================
+// SEARCH FILTER
+// ========================================
+
+.search-filter {
+  @include mixins.flex(
+    column,
+    stretch,
+    stretch,
+    functions.token("spacing", "md")
+  );
+}
+
+// ========================================
+// FILTER GROUP
+// ========================================
+
+.filter-group {
+  @include mixins.flex(
+    column,
+    center,
+    stretch,
+    functions.token("spacing", "md")
+  );
+
+  @include mixins.breakpoint("tablet") {
+    @include mixins.flex(row, flex-start, stretch);
+  }
+}
+
+// ========================================
+// BUTTON GROUP
+// ========================================
+
+.button-group {
+  @include mixins.flex(
+    column,
+    center,
+    stretch,
+    functions.token("spacing", "md")
+  );
+
+  @include mixins.breakpoint("mobile-lg") {
+    @include mixins.flex(row, normal, center, functions.token("spacing", "md"));
+
+    button {
+      flex: 1;
+    }
+  }
+
+  @include mixins.breakpoint("tablet") {
+    @include mixins.flex(
+      row,
+      flex-start,
+      center,
+      functions.token("spacing", "md")
+    );
+
+    button {
+      flex: none;
+    }
+  }
+}

@@ -2,9 +2,6 @@
  * Header Component Styles
  */
 
-@use "../../styles/functions";
-@use "../../styles/mixins";
-
 // ========================================
 // HEADER CONTAINER
 // ========================================
@@ -15,7 +12,7 @@
   padding: functions.token("spacing", "md") functions.token("spacing", "lg");
   box-shadow: functions.token("shadows", "md");
 
-  @include mixins.flex-between;
+  @include mixins.flex(row, space-between, center);
 
   position: relative;
 
@@ -29,9 +26,13 @@
 // ========================================
 
 .header-logo {
-  @include mixins.flex-center;
+  @include mixins.flex(
+    row,
+    flex-start,
+    center,
+    functions.token("spacing", "xl")
+  );
 
-  gap: functions.token("spacing", "xl");
   cursor: pointer;
   text-decoration: none;
   color: inherit;
@@ -42,11 +43,13 @@
     opacity: 0.9;
   }
 
+  img,
   svg {
     color: functions.token("colors", "text", "white");
     flex-shrink: 0;
     width: 32px;
     height: 32px;
+    border-radius: functions.token("borderRadius", "lg");
 
     @include mixins.breakpoint("tablet") {
       width: 40px;

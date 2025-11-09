@@ -1,0 +1,81 @@
+/**
+ * StudentForm Component Styles
+ * Form for adding/editing student information
+ */
+
+// ========================================
+// FORM
+// ========================================
+
+.student-form {
+  padding: functions.token("spacing", "2xl");
+  background: functions.token("colors", "background", "white");
+  border-radius: functions.token("borderRadius", "md");
+  box-shadow: functions.token("shadows", "sm");
+  border: 1px solid #f0f0f0;
+
+  @include mixins.flex(
+    column,
+    stretch,
+    stretch,
+    functions.token("spacing", "2xl")
+  );
+}
+
+// ========================================
+// FORM CONTAINER
+// ========================================
+
+.form-container {
+  @include mixins.flex(
+    column,
+    stretch,
+    stretch,
+    functions.token("spacing", "md")
+  );
+
+  @include mixins.breakpoint("laptop") {
+    @include mixins.flex(
+      row,
+      flex-start,
+      stretch,
+      functions.token("spacing", "2xl")
+    );
+
+    button {
+      margin: auto 0 auto auto;
+    }
+  }
+}
+
+// ========================================
+// FORM GROUP
+// ========================================
+
+.form-group {
+  @include mixins.flex(column);
+
+  gap: functions.token("spacing", "sm");
+}
+
+// ========================================
+// ERROR MESSAGE
+// ========================================
+
+.error-message {
+  @include mixins.flex(row, center, center);
+
+  gap: functions.token("spacing", "md");
+  padding: functions.token("spacing", "sm");
+  background-color: #f8d7da;
+  color: functions.token("colors", "error", "text");
+  border: 1px solid #f5c6cb;
+  border-radius: functions.token("borderRadius", "sm");
+  font-size: functions.token("fontSizes", "sm");
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}

@@ -1,11 +1,13 @@
-import { useAppView } from "../../contexts/AppViewContext";
-import { useStudents } from "../../hooks";
-import { StudentForm } from "../StudentForm";
-import { StudentList } from "../StudentList";
-import { SearchFilter } from "../SearchFilter";
-import { Student } from "../../types";
+import { useAppView } from "../../../contexts/AppViewContext";
+import { useStudents } from "../../../hooks";
+import { StudentForm } from "../../organisms/StudentForm";
+import { StudentList } from "../../organisms/StudentList";
+import { SearchFilter } from "../../molecules/SearchFilter";
+import { Student } from "../../../types";
 import { useEffect } from "react";
-import { ArrowLeft } from "lucide-react";
+import { AlertCircle, ArrowLeft } from "lucide-react";
+import { Button } from "../../atoms/Button";
+import "./index.scss";
 
 export const AppContent = () => {
   const { view, editingStudentId, setView } = useAppView();
@@ -36,10 +38,10 @@ export const AppContent = () => {
     return (
       <>
         <div className="app-container">
-          <button onClick={handleBackClick} className="btn-cancel">
+          <Button onClick={handleBackClick} variant="cancel">
             <ArrowLeft size={16} />
             Voltar
-          </button>
+          </Button>
 
           <section className="form-section">
             <h2>Adicionar Novo Aluno</h2>
@@ -62,10 +64,10 @@ export const AppContent = () => {
     return (
       <>
         <div className="app-container">
-          <button onClick={handleBackClick} className="btn-cancel">
+          <Button onClick={handleBackClick} variant="cancel">
             <ArrowLeft size={16} />
             Voltar
-          </button>
+          </Button>
 
           <section className="form-section">
             <h2>Editar Aluno</h2>
@@ -91,7 +93,12 @@ export const AppContent = () => {
   // View LIST (padrão)
   return (
     <div className="app-container">
-      {error && <div className="app-error">{error}</div>}
+      {error && (
+        <div className="app-error">
+          <AlertCircle size={16} />
+          {error}
+        </div>
+      )}
 
       <section className="search-section">
         <h2>Filtrar:</h2>

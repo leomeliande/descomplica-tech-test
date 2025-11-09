@@ -11,6 +11,10 @@ $colors: (
     "primary-light": rgba(0, 230, 143, 0.25),
   ),
   "semantic": (
+    "success-light": #d4edda,
+    "success": #4caf50,
+    "success-dark": #388e3c,
+    "danger-light": #f8d7da,
     "danger": #f87171,
     "danger-dark": #dc2626,
     "info": #0dcaf0,
@@ -23,7 +27,7 @@ $colors: (
     "white": #fff,
   ),
   "background": (
-    "primary": #f5f5f5,
+    "primary": #f2f2f3,
     "secondary": #fafafa,
     "white": #fff,
   ),
@@ -88,15 +92,15 @@ $fonts: (
 );
 
 $font-sizes: (
-  "xs": 12px,
-  "sm": 13px,
-  "base": 14px,
-  "md": 16px,
-  "lg": 18px,
-  "xl": 20px,
-  "2xl": 24px,
-  "3xl": 28px,
-  "4xl": 32px,
+  "xs": 0.75rem,
+  "sm": 0.8125rem,
+  "base": 0.875rem,
+  "md": 1rem,
+  "lg": 1.125rem,
+  "xl": 1.25rem,
+  "2xl": 1.5rem,
+  "3xl": 1.75rem,
+  "4xl": 2rem,
 );
 
 $font-weights: (
