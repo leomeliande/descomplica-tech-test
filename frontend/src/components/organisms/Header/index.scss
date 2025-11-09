@@ -1,15 +1,13 @@
-/**
- * Header Component Styles
- */
-
 // ========================================
 // HEADER CONTAINER
 // ========================================
 
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+
 .app-header {
   background-color: functions.token("colors", "brand", "primary");
   color: functions.token("colors", "text", "white");
-  padding: functions.token("spacing", "md") functions.token("spacing", "lg");
+  padding: functions.token("spacing", "xl") functions.token("spacing", "md");
   box-shadow: functions.token("shadows", "md");
 
   @include mixins.flex(row, space-between, center);
@@ -17,7 +15,7 @@
   position: relative;
 
   @include mixins.breakpoint("tablet") {
-    padding: functions.token("spacing", "lg") functions.token("spacing", "3xl");
+    padding: functions.token("spacing", "2xl") functions.token("spacing", "md");
   }
 }
 
@@ -30,41 +28,20 @@
     row,
     flex-start,
     center,
-    functions.token("spacing", "xl")
+    //functions.token("spacing", "xs")
   );
 
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  flex: 1;
-  transition: opacity functions.token("durations", "fast");
-
-  &:hover {
-    opacity: 0.9;
-  }
-
-  img,
-  svg {
-    color: functions.token("colors", "text", "white");
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: functions.token("borderRadius", "lg");
-
-    @include mixins.breakpoint("tablet") {
-      width: 40px;
-      height: 40px;
-    }
-  }
+  background-color: functions.token("colors", "background", "white");
+  border-radius: functions.token("borderRadius", "lg");
+  padding: functions.token("spacing", "sm") functions.token("spacing", "md");
 
   h1 {
-    margin: 0;
-    font-size: functions.token("fontSizes", "lg");
+    font-family: "Caveat", cursive;
+    color: functions.token("colors", "brand", "primary");
+    font-size: functions.token("fontSizes", "3xl");
     font-weight: functions.token("fontWeights", "bold");
     letter-spacing: -0.5px;
-
-    @include mixins.breakpoint("tablet") {
-      font-size: functions.token("fontSizes", "4xl");
-    }
+    margin-bottom: 2px;
+    pointer-events: none;
   }
 }

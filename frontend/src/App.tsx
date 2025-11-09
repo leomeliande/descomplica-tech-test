@@ -1,21 +1,19 @@
-import { useEffect } from "react";
-import { useStudents } from "./hooks";
-import { AppViewProvider } from "./contexts/AppViewContext";
-import { Home } from "./components/pages/Home";
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "./routes";
+import { AppTemplate } from "./components/templates/App";
+import { ToastProvider } from "./hooks";
 
 import "./styles/index.scss";
 
 function App() {
-  const { loadStudents } = useStudents();
-
-  useEffect(() => {
-    loadStudents();
-  }, [loadStudents]);
-
   return (
-    <AppViewProvider>
-      <Home />
-    </AppViewProvider>
+    <ToastProvider>
+      <BrowserRouter>
+        <AppTemplate>
+          <AppRoutes />
+        </AppTemplate>
+      </BrowserRouter>
+    </ToastProvider>
   );
 }
 

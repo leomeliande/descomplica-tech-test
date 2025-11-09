@@ -128,7 +128,6 @@ export function useStudents() {
   // Editing methods
   const startEditing = useCallback((student: Student) => {
     setEditingStudent(student);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const cancelEditing = useCallback(() => {
@@ -149,6 +148,7 @@ export function useStudents() {
     loading,
     error,
     setError,
+    clearError: () => setError(""),
 
     // Filters
     filters,

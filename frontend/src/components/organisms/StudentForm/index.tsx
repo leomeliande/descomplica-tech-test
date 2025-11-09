@@ -53,62 +53,53 @@ export const StudentForm: React.FC<StudentFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit} className="student-form">
-      <div className="form-container">
-        <div className="form-group">
-          <Input
-            id="nome"
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            label="Nome:"
-            placeholder="Digite o nome do aluno"
-            disabled={loading}
-            required
-            error={nome.trim() === "" ? "O nome é obrigatório" : undefined}
-          />
-        </div>
-
-        <div className="form-group">
-          <Input
-            id="cpf"
-            type="text"
-            label="CPF:"
-            value={formatCPF(cpf)}
-            onChange={handleCPFChange}
-            placeholder="000.000.000-00"
-            disabled={loading}
-            maxLength={14}
-            required
-            error={cpf.trim() === "" ? "O CPF é obrigatório" : undefined}
-          />
-        </div>
-
-        <div className="form-group">
-          <Input
-            id="email"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            label="Email:"
-            placeholder="Digite o email do aluno"
-            disabled={loading}
-            required
-            error={email.trim() === "" ? "O email é obrigatório" : undefined}
-          />
-        </div>
-
-        <Button type="submit" loading={loading} variant="primary">
-          <Save size={16} />
-          {mode === "create" ? "Adicionar Aluno" : "Atualizar Aluno"}
-        </Button>
+      <div className="form-group">
+        <Input
+          id="nome"
+          type="text"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          label="Nome:"
+          placeholder="Digite o nome do aluno"
+          disabled={loading}
+          required
+          error={nome.trim() === "" ? "O nome é obrigatório" : undefined}
+        />
       </div>
 
-      {(error || localError) && (
-        <div className="error-message">
-          <AlertCircle size={16} />
-          {error || localError}
-        </div>
-      )}
+      <div className="form-group">
+        <Input
+          id="cpf"
+          type="text"
+          label="CPF:"
+          value={formatCPF(cpf)}
+          onChange={handleCPFChange}
+          placeholder="000.000.000-00"
+          disabled={loading}
+          maxLength={14}
+          required
+          error={cpf.trim() === "" ? "O CPF é obrigatório" : undefined}
+        />
+      </div>
+
+      <div className="form-group">
+        <Input
+          id="email"
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          label="Email:"
+          placeholder="Digite o email do aluno"
+          disabled={loading}
+          required
+          error={email.trim() === "" ? "O email é obrigatório" : undefined}
+        />
+      </div>
+
+      <Button type="submit" loading={loading} variant="primary">
+        <Save size={16} />
+        {mode === "create" ? "Adicionar Aluno" : "Atualizar Aluno"}
+      </Button>
     </form>
   );
 };

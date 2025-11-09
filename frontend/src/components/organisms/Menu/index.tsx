@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Menu, X, Users, UserPlus } from "lucide-react";
-import { useAppView } from "../../../contexts/AppViewContext";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./index.scss";
 import { Button } from "../../atoms/Button";
 
 export const HeaderMenu = () => {
-  const { setView } = useAppView();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleNavigation = (view: "list" | "add") => {
-    setView(view);
+  const handleNavigation = (path: string) => {
+    navigate(path);
     setIsMenuOpen(false);
   };
 
@@ -25,12 +26,20 @@ export const HeaderMenu = () => {
       </Button>
 
       <nav className={`header-menu ${isMenuOpen ? "open" : ""}`}>
-        <Button onClick={() => handleNavigation("list")} variant="secondary">
+        <Button
+          onClick={() => handleNavigation("/")}
+          variant="secondary"
+          disabled={location.pathname === "/"}
+        >
           <Users size={18} />
           Alunos
         </Button>
 
-        <Button onClick={() => handleNavigation("add")} variant="primary">
+        <Button
+          onClick={() => handleNavigation("/novo")}
+          variant="primary"
+          disabled={location.pathname === "/novo"}
+        >
           <UserPlus size={18} />
           Novo Aluno
         </Button>

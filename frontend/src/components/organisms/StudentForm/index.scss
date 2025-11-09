@@ -4,7 +4,7 @@
  */
 
 // ========================================
-// FORM
+// FORM CONTAINER
 // ========================================
 
 .student-form {
@@ -14,19 +14,6 @@
   box-shadow: functions.token("shadows", "sm");
   border: 1px solid #f0f0f0;
 
-  @include mixins.flex(
-    column,
-    stretch,
-    stretch,
-    functions.token("spacing", "2xl")
-  );
-}
-
-// ========================================
-// FORM CONTAINER
-// ========================================
-
-.form-container {
   @include mixins.flex(
     column,
     stretch,

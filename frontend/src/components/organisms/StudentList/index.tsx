@@ -3,22 +3,22 @@ import { Button } from "../../atoms/Button";
 import { Pencil, Trash2 } from "lucide-react";
 import { Student } from "../../../types";
 import { formatCPFDisplay } from "../../../utils";
+import { useNavigate } from "react-router-dom";
 import "./index.scss";
 
 interface StudentListProps {
   students: Student[];
-  onEdit: (student: Student) => void;
   onDelete: (id: string) => Promise<void>;
   loading?: boolean;
 }
 
 export const StudentList: React.FC<StudentListProps> = ({
   students,
-  onEdit,
   onDelete,
   loading = false,
 }) => {
   const [deleteLoading, setDeleteLoading] = React.useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleDelete = async (id: string) => {
     if (window.confirm("Tem certeza que deseja deletar este aluno?")) {
@@ -61,7 +61,7 @@ export const StudentList: React.FC<StudentListProps> = ({
               <td className="actions">
                 <Button
                   variant="primary"
-                  onClick={() => onEdit(student)}
+                  onClick={() => navigate(`/editar/${student._id}`)}
                   disabled={loading || deleteLoading !== null}
                   title="Editar aluno"
                 >
