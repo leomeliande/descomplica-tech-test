@@ -12,6 +12,8 @@ API GraphQL em Node.js + UI em React para gerenciamento de alunos com CRUD compl
 
 **Tech:** Node.js • TypeScript • GraphQL • React • MongoDB • Docker • ESLint • Prettier
 
+> 📝 **TESTE TÉCNICO:** Este projeto foi desenvolvido como teste técnico para o processo seletivo da Descomplica. É uma demonstração de competências em desenvolvimento full-stack e não representa um produto comercial ou oficial.
+
 ---
 
 ## ✨ Destaques
@@ -507,7 +509,7 @@ git push origin feature/sua-feature
 **Leonardo Meliande**
 
 - GitHub: [@leomeliande](https://github.com/leomeliande)
-- Projeto: Sistema de Gerenciamento de Alunos - Descomplica
+- Projeto: Descomplica Flow - Sistema de Gerenciamento de Alunos
 
 ---
 
@@ -568,4 +570,23 @@ git push origin feature/sua-feature
 
 ---
 
-**Desenvolvido com ❤️ para Descomplica**
+## 📝 Sobre Este Projeto
+
+Este é um **teste técnico** desenvolvido como parte do processo seletivo da **Descomplica**. O projeto foi criado para demonstrar competências em desenvolvimento full-stack, arquitetura de software, e boas práticas de código.
+
+### ℹ️ Observações Importantes
+
+- 🎯 **Propósito:** Demonstração técnica para seleção de candidatos
+- 📚 **Tipo:** Projeto educacional/avaliativo
+- 🔓 **Acesso:** Código aberto para fins de portfolio
+- ✅ **Status:** Completo e funcional
+
+O projeto utiliza o domínio "Descomplica" como contexto educacional, referenciando a empresa cliente do teste técnico.
+
+### 📄 Licença MIT
+
+Este código está disponibilizado sob a licença MIT. Você é livre para usar, modificar e distribuir, desde que mantenha os créditos originais.
+
+---
+
+**Desenvolvido como teste técnico para Descomplica**
