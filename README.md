@@ -1,6 +1,6 @@
 # 📚 Descomplica Flow - Sistema de Gerenciamento de Alunos
 
-[![Node.js](https://img.shields.io/badge/Node.js-20-green?logo=node.js)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18-green?logo=node.js)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18-61dafb?logo=react)](https://react.dev/)
 [![GraphQL](https://img.shields.io/badge/GraphQL-Apollo-e535ab?logo=graphql)](https://www.apollographql.com/)
