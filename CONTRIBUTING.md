@@ -1,4 +1,4 @@
-# 🤝 Contribuindo para Descomplica Tech
+# 🤝 Contribuindo para o projeto
 
 Obrigado por considerar contribuir! Este documento fornece diretrizes e melhores práticas para contribuir com o projeto.
 
