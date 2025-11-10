@@ -1,4 +1,5 @@
 import { validateCPF } from "../src/utils/validation";
+import { jest } from "@jest/globals";
 
 export const generateValidCPF = (baseNumber: number): string => {
   const base = String(baseNumber).padStart(9, "0").slice(0, 9);
@@ -111,9 +112,8 @@ jest.mock("../src/resolvers/StudentResolver", () => {
   };
 });
 
-// tiny helper so tests can reset between cases
 export const resetMock = () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const mod = require("../src/resolvers/StudentResolver");
+
   mod.__reset?.();
 };
