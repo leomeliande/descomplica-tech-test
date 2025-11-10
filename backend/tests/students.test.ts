@@ -2,6 +2,7 @@
 import request from "supertest";
 import app from "../src/app";
 import { resetMock, generateValidCPF } from "./mock";
+import { describe, beforeEach, it, expect } from "@jest/globals";
 
 describe("Student GraphQL API (mocked)", () => {
   beforeEach(() => {

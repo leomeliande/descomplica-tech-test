@@ -105,20 +105,17 @@ export function useStudents() {
   const hasFilters = Object.values(filters).some((v) => v);
 
   return {
-    // Student list
     students,
     loadStudents,
     addStudent,
     updateStudent,
     deleteStudent,
 
-    // UI
     loading,
     error,
     setError,
     clearError: () => setError(""),
 
-    // Filters
     filters,
     applyFilters,
     clearFilters,
